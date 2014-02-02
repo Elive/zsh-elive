@@ -8,6 +8,7 @@ stty -echo
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+# - for details of each feature read /etc/zsh/.zprezto/**/README*
 
 # OVERRIDE framework defaults:
 #
@@ -150,15 +151,20 @@ typeset -U path cdpath fpath manpath PATH
 # use ^w to match also addresses like /usr/share/foo, not to consider it a single word
 #WORDCHARS=${WORDCHARS/\//}
 
+# This was my default completer mode, let's see if we need to switch to this one over the time
+#zstyle ':completion:*' completer _expand _complete _approximate
+#zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 
 
-
-
-#
-# HOWTO
-#
-# - for details of each feature read /etc/zsh/.zprezto/**/README*
 
 
 # reenable input
 stty echo
+
+
+# help
+echo "                     ${PR_GRAY}Type 'help' to know the ton of Elive features available...${PR_NO_COLOR}"
+
+
+
+
