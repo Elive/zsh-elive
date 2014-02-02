@@ -35,6 +35,8 @@ zle -N __correct_ctrl_r_to_better_history
 bindkey "^r" __correct_ctrl_r_to_better_history
 
 
+# not convinced with "sharedhistory", it don't allow you to replay easly commands in the same terminals
+setopt nosharehistory
 
 
 
@@ -189,6 +191,14 @@ $fg[blue]
 
 
 $fg[yellow]
+More about Zsh
+==============
+$fg[white]
+  - More Info & Best Tips:
+  - Best Tips:     http://www.rayninfo.co.uk/tips/zshtips.html
+  - Zsh Lovers:    http://grml.org/zsh/zsh-lovers.html
+
+$fg[yellow]
 Commonly used Directories & Files
 =================================
 $fg[white]
@@ -206,42 +216,16 @@ ZSH generic examples
 $fg[white]
 Zsh by default allows you to have a good amount of features, for example:
 
-# recursive chmod
-  $ chmod 700 **/(.) # Only files
-  $ chmod 700 **/(/) # Only directories
-# Show only world-readable files
-  $ ls -l *(R)
-# List files in the current directory are not writable by the owner
-  $ print -l ~/*(ND.^w)
-# find and delete the files which are older than a given parameter
-# (seconds/minutes/hours)
-  # deletes all regular file in /Dir that are older than 3 hours
-   $ rm -f /Dir/**/*(.mh+3)
-  # deletes all symlinks in /Dir that are older than 3 minutes
-   $ rm -f /Dir/**/*(@mm+3)
-  # deletes all non dirs in /Dir that are older than 30 seconds
-   $ rm -f /Dir/**/*(ms+30^/)
-  # deletes all folders, sub-folders and files older than one hour
-   $ rm ./**/*(.Dmh+1,.DL0)
-  # deletes all files more than 6 hours old
-   $ rm -f **/*(mh+6)
-  # removes all files but the ten newer ones (delete all but last 10
-  # files in a directory)
-   $ rm ./*(Om[1,-11])
- Note: If you get a arg list too long, you use the builtin rm. For
-       example:
-   $ zmodload zsh/files ; rm -f **/*(mh+6)
-  or use the zargs function:
-   $ autoload zargs ; zargs **/*(mh+6) -- rm -f
-# Change the UID from 102 to 666
-  $ chown 666 **/*(u102)
-# List all files which have not been updated since last 10 hours
-  $ print -rl -- *(Dmh+10^/)
-# delete only the oldest file in a directory
-  $ rm ./*filename*(Om[1])
-# find most recent file in a directory
-  $ setopt dotglob ; print directory/**/*(om[1])
-#### more info: http://grml.org/zsh/zsh-lovers.html
+  - ls *(.)            # list just regular files
+  - ls *(/)            # list just directories
+  - ls -ld *(/om[1,3]) # Show three newest directories. "om" orders by modification. "[1,3]" works like Python slice.
+  - rm -i *(.L0)       # Remove zero length files, prompt for each file
+  - ls *(^m0)          # Files not modified today.
+  - emacs **/main.py   # Edit main.py, wherever it is in this directory tree. ** is great.
+  - ls **/*(.x)        # List all executable files in this tree
+  - ls *~*.*(.)        # List all files that does not have a dot in the filename
+  - ls -l */**(Lk+100) # List all files larger than 100kb in this tree
+  - ls DATA_[0-9](#c4,7).csv # List DATA_nnnn.csv to DATA_nnnnnnn.csv
 
 $fg[yellow]
 Elive Features
@@ -250,7 +234,7 @@ $fg[white]
 The ZSH setup by Elive includes lots of features, for example:
   - pressing "ctrl + e" and then a dot, will insert the last typed word again (useful for similar words/dirs in your commands)
   - run "alias" to know the ton of aliases already set
-  - if you ssh to another elive, a tmux session is automatically opened for it
+  - if you ssh to another elive, a tmux session is automatically opened for it (try: ssh localhost)
   - type a word and then the up arrow to browse your command history
   - lots of syntax hilighting, even for manpages
   - autocompletions with extreme possibilities, for example, try:
@@ -260,14 +244,14 @@ The ZSH setup by Elive includes lots of features, for example:
     - cd ...  becomes  cd ../..  in realtime while you are typing it
     - your prompt working directory (pwd) is shortcuted to an expandable (tab) value
       - "vim /et/d/us<TAB>" expands to "vim /etc/default/adduser.conf"
+    - use tab for corrections also, not only complete
   - tmux (screen-like) is automatically opened or reconnected when you login from ssh
     - tmuxa / tmuxl are shortcuts to connect or list the sessions
     - read your .tmux.conf file comments to know its amazing features
   - Git: you have aliases and an identifying prompt for git statuses  http://4.bp.blogspot.com/-VEdW0qxzPCI/UTUpYhFutFI/AAAAAAAAJJc/00OAaDNZvIQ/s1600/prezto-git-icons-key.png
-  - 
+  - with "Ctrl + w" you remove the last word, this feature is extremely useful
+  - with "Ctrl + -" you have an "undo" feature in your shell, even if you removed something or your expansion become very big or your contents changed, BONUS!
 
-
-	
 
 
 $fg[cyan]
