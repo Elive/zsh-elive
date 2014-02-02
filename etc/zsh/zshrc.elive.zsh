@@ -244,6 +244,7 @@ The ZSH setup by Elive includes lots of features, for example:
     - cd ...  becomes  cd ../..  in realtime while you are typing it
     - your prompt working directory (pwd) is shortcuted to an expandable (tab) value
       - "vim /et/d/us<TAB>" expands to "vim /etc/default/adduser.conf"
+      - "cd /u/lo/b<TAB>" expands to "cd /usr/local/bin"
     - use tab for corrections also, not only complete
   - tmux (screen-like) is automatically opened or reconnected when you login from ssh
     - tmuxa / tmuxl are shortcuts to connect or list the sessions
@@ -251,6 +252,20 @@ The ZSH setup by Elive includes lots of features, for example:
   - Git: you have aliases and an identifying prompt for git statuses  http://4.bp.blogspot.com/-VEdW0qxzPCI/UTUpYhFutFI/AAAAAAAAJJc/00OAaDNZvIQ/s1600/prezto-git-icons-key.png
   - with "Ctrl + w" you remove the last word, this feature is extremely useful
   - with "Ctrl + -" you have an "undo" feature in your shell, even if you removed something or your expansion become very big or your contents changed, BONUS!
+  - your new terminals always open in your last-worked-dir by default
+  - with "Ctrl + g" you can switch from per-directory-based history and normal mode
+  - run the command "history-stat" to know your top-10 most used commands (then create aliases/functions/scripts to improve in the commands that takes you more time!)
+    - "alias | grep git" to know which aliases you have available for common git commands
+
+
+
+$fg[green]
+             _             _
+  ___ _ __  (_) ___  _   _| |
+ / _ \ '_ \ | |/ _ \| | | | |
+|  __/ | | || | (_) | |_| |_|
+ \___|_| |_|/ |\___/ \__, (_)
+          |__/       |___/
 
 
 
