@@ -7,6 +7,7 @@ ZDOTDIR="/etc/zsh"
 #
 # get the optimal default elive confs
 source /etc/zsh/zshrc.elive.zsh
+unset ZDOTDIR
 #
 ################# End Elive default confs ###################
 
