@@ -1,3 +1,6 @@
+# don't show input while loading
+stty -echo
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -31,3 +34,6 @@ _rationalise-dot() {
 zle -N _rationalise-dot
 bindkey . _rationalise-dot
 
+
+# reenable input
+stty echo
