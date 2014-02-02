@@ -56,7 +56,7 @@ fi
 #
 # FUNCTIONS
 #
-# set colors, be able to use them everywhere
+# set colors, be able to use them in prompts
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
     colors
@@ -163,7 +163,7 @@ stty echo
 
 
 # help
-echo "                     ${PR_GRAY}Type 'help' to know the ton of Elive features available...${PR_NO_COLOR}"
+echo "                     $fg[green]Type 'help' to know the ton of Elive features available...$reset_color"
 
 
 
