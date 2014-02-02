@@ -202,11 +202,13 @@ $fg[yellow]
 Commonly used Directories & Files
 =================================
 $fg[white]
-With FASD feature you can fastly access to (commonly used) directories or files by triggering a remembered autocompleting list, if you do something like 'vi ,sh' and press TAB, it will open an autocomplete list of matches including the 'sh' keyword, there's some examples:
-$fg[green]
+With FASD feature you can fastly access to (commonly used) directories or
+files by triggering a remembered autocompleting list, if you do something like
+'vi ,sh' and press TAB, it will open an autocomplete list of matches including
+the 'sh' keyword, there's some examples: $fg[green]
   - use 'j' to interactivey enter in used directories
-  - "vim ,rc,lo <TAB>" -> open matches containing 'rc' and then 'lo' keywrods, like "vim /etc/rc.local"
-  - use f,WORD to specify that it is a file
+  - "vim ,rc,lo <TAB>" -> open matches containing 'rc' and then 'lo' keywrods,
+    like "vim /etc/rc.local" - use f,WORD to specify that it is a file
   - use d,WORD to specify that it is a directory
   - use WORD,,f <TAB> if you want to trigger it after to type the word
 
@@ -218,12 +220,13 @@ Zsh by default allows you to have a good amount of features, for example:
 
   - ls *(.)            # list just regular files
   - ls *(/)            # list just directories
-  - ls -ld *(/om[1,3]) # Show three newest directories. "om" orders by modification. "[1,3]" works like Python slice.
+  - ls -ld *(/om[1,3]) # Show three newest directories. "om" orders by
+    modification. "[1,3]" works like Python slice.  
   - rm -i *(.L0)       # Remove zero length files, prompt for each file
   - ls *(^m0)          # Files not modified today.
-  - emacs **/main.py   # Edit main.py, wherever it is in this directory tree. ** is great.
+  - emacs **/main.py   # Edit main.py, wherever it is in this directory tree.
   - ls **/*(.x)        # List all executable files in this tree
-  - ls *~*.*(.)        # List all files that does not have a dot in the filename
+  - ls *~*.*(.)        # List all files that does not have a dot in filename
   - ls -l */**(Lk+100) # List all files larger than 100kb in this tree
   - ls DATA_[0-9](#c4,7).csv # List DATA_nnnn.csv to DATA_nnnnnnn.csv
 
@@ -232,30 +235,42 @@ Elive Features
 ====================
 $fg[white]
 The ZSH setup by Elive includes lots of features, for example:
-  - pressing "ctrl + e" and then a dot, will insert the last typed word again (useful for similar words/dirs in your commands)
+  - pressing "ctrl + e" and then a dot, will insert the last typed word again
+    (useful for similar words/dirs in your commands)
   - run "alias" to know the ton of aliases already set
-  - if you ssh to another elive, a tmux session is automatically opened for it (try: ssh localhost)
+  - if you ssh to another elive, a tmux session is automatically opened for it
+    (try: ssh localhost)
   - type a word and then the up arrow to browse your command history
   - lots of syntax hilighting, even for manpages
   - autocompletions with extreme possibilities, for example, try:
     - kill <TAB>
     - xkill -id <TAB>
-    - man find<TAB>  (shows the sections/topics of manpages for each possibility)
+    - man find<TAB>  (shows the sections/topics of manpages for each
+      possibility)
     - cd ...  becomes  cd ../..  in realtime while you are typing it
-    - your prompt working directory (pwd) is shortcuted to an expandable (tab) value
+    - your prompt working directory (pwd) is shortcuted to an expandable (tab)
+      value
       - "vim /et/d/us<TAB>" expands to "vim /etc/default/adduser.conf"
       - "cd /u/lo/b<TAB>" expands to "cd /usr/local/bin"
     - use tab for corrections also, not only complete
-  - tmux (screen-like) is automatically opened or reconnected when you login from ssh
+  - tmux (screen-like) is automatically opened or reconnected when you login
+    from ssh
     - tmuxa / tmuxl are shortcuts to connect or list the sessions
     - read your .tmux.conf file comments to know its amazing features
-  - Git: you have aliases and an identifying prompt for git statuses  http://4.bp.blogspot.com/-VEdW0qxzPCI/UTUpYhFutFI/AAAAAAAAJJc/00OAaDNZvIQ/s1600/prezto-git-icons-key.png
+  - Git: you have aliases and an identifying prompt for git statuses
+    http://4.bp.blogspot.com/-VEdW0qxzPCI/UTUpYhFutFI/AAAAAAAAJJc/00OAaDNZvIQ/s1600/prezto-git-icons-key.png
   - with "Ctrl + w" you remove the last word, this feature is extremely useful
-  - with "Ctrl + -" you have an "undo" feature in your shell, even if you removed something or your expansion become very big or your contents changed, BONUS!
+  - with "Ctrl + -" you have an "undo" feature in your shell, even if you
+    removed something or your expansion become very big or your contents
+    changed, BONUS!
   - your new terminals always open in your last-worked-dir by default
-  - with "Ctrl + g" you can switch from per-directory-based history and normal mode
-  - run the command "history-stat" to know your top-10 most used commands (then create aliases/functions/scripts to improve in the commands that takes you more time!)
-    - "alias | grep git" to know which aliases you have available for common git commands
+  - with "Ctrl + g" you can switch from per-directory-based history and normal
+    mode
+  - run the command "history-stat" to know your top-10 most used commands
+    (then create aliases/functions/scripts to improve in the commands that takes
+    you more time!)
+    - example "alias | grep git" to know which aliases you have available for
+      common git commands
 
 
 
