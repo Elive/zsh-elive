@@ -163,6 +163,35 @@ stty echo
 
 
 # help
+# show help to the user
+function help(){
+    #if [[ -n "$1" ]] then
+	#command help
+    #else
+	#/etc/alternatives/x-www-browser "http://www.elivecd.org/?s=zsh"
+    #fi
+    # Let's show him some tips for now:
+cat << EOF
+$fg[blue]
+                _____ _ _                     _________  _   _
+               | ____| (_)_   _____     _    |__  / ___|| | | |
+               |  _| | | \ \ / / _ \  _| |_    / /\___ \| |_| |
+               | |___| | |\ V /  __/ |_   _|  / /_ ___) |  _  |
+               |_____|_|_| \_/ \___|   |_|   /____|____/|_| |_|
+
+
+$fg[yellow]
+Commonly used Directories & Files
+=================================
+$fg[green]
+  - use 'j' to interactivey enter in used directories
+
+
+$fg[cyan]
+Press Shift + PagUp to scroll up in your terminal
+EOF
+}
+
 echo "                     $fg[green]Type 'help' to know the ton of Elive features available...$reset_color"
 
 
