@@ -141,7 +141,7 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 setopt PUSHD_MINUS
-setopt AUTO_NAME_DIRS
+unsetopt AUTO_NAME_DIRS
 
 # do not warn us about that a file already exist when using echo foo > bar
 setopt clobber
