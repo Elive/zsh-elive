@@ -12,6 +12,11 @@ unset ZDOTDIR
 
 echo "                     $fg[green]Type 'help' to know the ton of Elive features available...$reset_color"
 
+# do we are in tmux?
+if [[ "$TERM" = "screen-256color" ]] ; then
+    echo "                     $fg[green]             See the special features when working in ssh!$reset_color"
+fi
+
 #
 ################# End Elive default confs ###################
 
