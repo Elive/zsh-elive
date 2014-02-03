@@ -19,6 +19,9 @@ setopt HIST_EXPIRE_DUPS_FIRST
 #
 # completion
 #
+# This matcher seems to be better than the default one, it gives us less "wrong corrections":
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+
 # ignore completion for specific files
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*?.swp'
 zstyle ':completion:*:*:cd:*' ignored-patterns '(*/|)(CVS|SCCS)'
