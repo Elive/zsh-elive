@@ -135,6 +135,16 @@ setopt CORRECT
 # * shouldn't match dotfiles. ever.
 setopt noglobdots
 
+# dir stack options
+DIRSTACKSIZE=20
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+setopt PUSHD_MINUS
+setopt AUTO_NAME_DIRS
+
+# do not warn us about that a file already exist when using echo foo > bar
+setopt clobber
 
 
 
@@ -202,20 +212,32 @@ $fg[white]
   - More Info & Best Tips:
   - Best Tips:     http://www.rayninfo.co.uk/tips/zshtips.html
   - Zsh Lovers:    http://grml.org/zsh/zsh-lovers.html
+  - Globbing Match http://zsh.sourceforge.net/Intro/intro_2.html
+  - zsh tips       http://www.rayninfo.co.uk/tips/zshtips.html
+  - setopt options http://www.cs.elte.hu/zsh-manual/zsh_16.html
 
 $fg[yellow]
-Commonly used Directories & Files
-=================================
+Fast Access to Common Files & Directories
+=========================================
 $fg[white]
 With FASD feature you can fastly access to (commonly used) directories or
 files by triggering a remembered autocompleting list, if you do something like
 'vi ,sh' and press TAB, it will open an autocomplete list of matches including
 the 'sh' keyword, there's some examples: $fg[green]
-  - use 'j' to interactivey enter in used directories
-  - "vim ,rc,lo <TAB>" -> open matches containing 'rc' and then 'lo' keywrods,
-    like "vim /etc/rc.local" - use f,WORD to specify that it is a file
-  - use d,WORD to specify that it is a directory
-  - use WORD,,f <TAB> if you want to trigger it after to type the word
+ fasd
+ ----
+  - use 'j' to interactivey enter in commonly used directories
+  - "vim ,rc,lo<TAB>" -> open matches containing 'rc' and then 'lo' keywrods,
+     like "vim /etc/rc.local" - use f,WORD to specify that it is a file
+  - use d,KEYWORD to specify that it is a directory
+  - use KEYWORD,,f <TAB> if you want to trigger it after to type the word
+  - use "cd KEYWORD,,d<TAB>" everytime you want to enter in a common dir
+ dir stack
+ ---------
+  - every shell maintains a history of the dirs stack, you can go back to
+    previously worked directories (in their order) by simply pressing its
+    number (order) and enter, or "cd -NUM", or you can also "cp file ~-NUM",
+    use "dirs -v" (or the "d" alias shortcut) to see where points each num
 
 $fg[yellow]
 ZSH generic examples
@@ -245,6 +267,8 @@ The ZSH setup by Elive includes lots of features, for example:
   - run "alias" to know the ton of aliases already set
   - if you ssh to another elive, a tmux session is automatically opened for it
     (try: ssh localhost)
+    - tmuxa / tmuxl are shortcuts to connect or list the sessions
+    - read your .tmux.conf file comments to know its amazing features
   - type a word and then the up arrow to browse your command history
   - lots of syntax hilighting, even for manpages
   - autocompletions with extreme possibilities, for example, try:
@@ -252,21 +276,16 @@ The ZSH setup by Elive includes lots of features, for example:
     - xkill -id <TAB>
     - man find<TAB>  (shows the sections/topics of manpages for each
       possibility)
-    - cd ...  becomes  cd ../..  in realtime while you are typing it
+    - cd ....  becomes  cd ../../..  in realtime while you are typing it
     - your prompt working directory (pwd) is shortcuted to an expandable (tab)
       value
       - "vim /et/d/us<TAB>" expands to "vim /etc/default/adduser.conf"
       - "cd /u/lo/b<TAB>" expands to "cd /usr/local/bin"
     - use tab for corrections also, not only complete
-  - tmux (screen-like) is automatically opened or reconnected when you login
-    from ssh
-    - tmuxa / tmuxl are shortcuts to connect or list the sessions
-    - read your .tmux.conf file comments to know its amazing features
   - Git: you have aliases and an identifying prompt for git statuses
     http://4.bp.blogspot.com/-VEdW0qxzPCI/UTUpYhFutFI/AAAAAAAAJJc/00OAaDNZvIQ/s1600/prezto-git-icons-key.png
-  - your new terminals always open in your last-worked-dir by default
-  - with "Ctrl + g" you can switch from per-directory-based history and normal
-    mode
+  - if you have "per-directory-history" feature enabled in your .zpreztorc file,
+    with "Ctrl + g" you can switch from local and global history mode
   - run the command "history-stat" to know your top-10 most used commands
     (then create aliases/functions/scripts to improve in the commands that takes
     you more time!)
