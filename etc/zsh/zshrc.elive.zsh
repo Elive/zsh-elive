@@ -13,8 +13,9 @@ fi
 # OVERRIDE framework defaults:
 #
 # history
-HISTSIZE=1000000
-SAVEHIST=1000000
+HISTSIZE=101000
+SAVEHIST=100000
+setopt HIST_EXPIRE_DUPS_FIRST
 #
 # completion
 #
@@ -290,8 +291,6 @@ $fg[cyan]
 Press Shift + PagUp to scroll up in your terminal
 EOF
 }
-
-echo "                     $fg[green]Type 'help' to know the ton of Elive features available...$reset_color"
 
 
 

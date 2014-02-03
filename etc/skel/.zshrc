@@ -9,6 +9,9 @@ ZDOTDIR="/etc/zsh"
 source /etc/zsh/zshrc.elive.zsh
 unset ZDOTDIR
 
+
+echo "                     $fg[green]Type 'help' to know the ton of Elive features available...$reset_color"
+
 #
 ################# End Elive default confs ###################
 
