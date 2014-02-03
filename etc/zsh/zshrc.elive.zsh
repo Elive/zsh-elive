@@ -233,7 +233,7 @@ Zsh by default allows you to have a good amount of features, for example:
 
 $fg[yellow]
 Elive Features
-====================
+==============
 $fg[white]
 The ZSH setup by Elive includes lots of features, for example:
   - pressing "ctrl + e" and then a dot, will insert the last typed word again
@@ -260,10 +260,6 @@ The ZSH setup by Elive includes lots of features, for example:
     - read your .tmux.conf file comments to know its amazing features
   - Git: you have aliases and an identifying prompt for git statuses
     http://4.bp.blogspot.com/-VEdW0qxzPCI/UTUpYhFutFI/AAAAAAAAJJc/00OAaDNZvIQ/s1600/prezto-git-icons-key.png
-  - with "Ctrl + w" you remove the last word, this feature is extremely useful
-  - with "Ctrl + -" you have an "undo" feature in your shell, even if you
-    removed something or your expansion become very big or your contents
-    changed, BONUS!
   - your new terminals always open in your last-worked-dir by default
   - with "Ctrl + g" you can switch from per-directory-based history and normal
     mode
@@ -274,9 +270,50 @@ The ZSH setup by Elive includes lots of features, for example:
       common git commands
   - if you work in a common dir called git, type "cd d,git<TAB>" and you will
     be expanded to it
+  - with "Ctrl + w" you remove the last word, this feature is extremely useful
+  - with "Ctrl + -" you have an "undo" feature in your shell, even if you
+    removed something or your expansion become very big or your contents
+    changed, OMG BONUS!
 
 
 
+EOF
+
+if ((TERMINOLOGY)) ; then
+    cat << EOF
+$fg[yellow]
+Terminology!
+============
+$fg[white]
+You are using the Enlightened Terminal, please try these hotkeys if you didn't
+already know about them!
+ TABS
+ ----
+  - Shift + Ctrl + T:           Opens a new Tab
+  - Ctrl + PagUp/Down:          Switches from the opened Tabs
+  - Ctrl + Home:		Selector of Tabs with mouse
+  - Ctrl + (Number):		Go to the tab "number" directly
+ Splits
+ ------
+ Create new shell sessions in a splitted window that you can resize with mouse!
+  - Ctrl + Shift + PagUp:	Splits horizontally
+  - Ctrl + Shift + PagDown:	Splits vertically
+ Copy / Paste
+ ------------
+  - Ctrl + Shift + c: Copy a selected text
+  - Ctrl + Shift + v: Paste a copied text
+    - when you simply hilight something, becomes also copied in primary buffer
+  - Alt + Enter: Paste a hilighted selection
+    - using "shift [+ctrl] + insert" you can also paste the primary/clipboard
+ Other
+ -----
+  - Alt + Home: Enter commands that controls your terminology (man terminology)
+  - Ctrl + mouse-wheel: resize font
+
+EOF
+fi
+
+cat << EOF
 $fg[green]
              _             _
   ___ _ __  (_) ___  _   _| |
@@ -290,8 +327,7 @@ $fg[green]
 $fg[cyan]
 Press Shift + PagUp to scroll up in your terminal
 EOF
+
 }
-
-
 
 
