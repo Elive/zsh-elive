@@ -271,6 +271,8 @@ The ZSH setup by Elive includes lots of features, for example:
     you more time!)
     - example "alias | grep git" to know which aliases you have available for
       common git commands
+  - if you work in a common dir called git, type "cd d,git<TAB>" and you will
+    be expanded to it
 
 
 
