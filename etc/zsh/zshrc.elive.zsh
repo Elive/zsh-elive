@@ -173,6 +173,7 @@ function help(){
     #else
 	#/etc/alternatives/x-www-browser "http://www.elivecd.org/?s=zsh"
     #fi
+
     # Let's show him some tips for now:
 cat << EOF
 $fg[blue]
@@ -276,7 +277,6 @@ The ZSH setup by Elive includes lots of features, for example:
     changed, OMG BONUS!
 
 
-
 EOF
 
 if ((TERMINOLOGY)) ; then
@@ -313,6 +313,42 @@ already know about them!
 EOF
 fi
 
+if [[ "$TERM" = "screen-256color" ]] ; then
+    cat << EOF
+$fg[yellow]
+SSH / TMUX
+==========
+$fg[white]
+Tmux is a terminal multiplexer similar to 'screen' with a lot of features, like
+being able to share the same terminal or open multiple instances/tabs, splits,
+and specially to be able to disconnect from the remote computer with the
+session opened
+  - Shift + Down:  Create a new tab
+  - Ctrl + Left/Rigth:  Switch between tabs
+  -
+  - Ctrl + a:  is the trigger for the tmux actions (originally was 'b'), like:
+    - Ctrl-a c Create new window
+    - Ctrl-a d Detach current client, to keep the session opened
+    - Ctrl-a l Move to previously selected window
+    - Ctrl-a n Move to the next window
+    - Ctrl-a p Move to the previous window
+    - Ctrl-a & Kill the current window
+    - Ctrl-a , Rename the current window
+    - Ctrl-a % Split the current window into two panes
+    - Ctrl-a o Switch to the next pane
+    - Ctrl-a ? List all keybindings
+    -
+    - Ctrl-a | Split window horizontally
+    - Ctrl-a - Split window vertically
+    - Ctrl-a q Show pane numbers (used to switch between panes)
+    - Ctrl-a t Split to a small window in the bottom, useful for fast needs!
+    -
+    - read your $HOME/.tmux.conf file for more info in the comments
+
+EOF
+fi
+
+# END
 cat << EOF
 $fg[green]
              _             _
