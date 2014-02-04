@@ -194,11 +194,20 @@ function chpwd() {
 
 # go to parent directory in stack with alt + p
 function _directories_switcher_up() {
+    local line is_firstline_done
     popd
 
     # show the stack
-    echo
-    dirs -v | head -7
+    echo -e "\n $fg[yellow] -- Directory Stack -- $fg[white]"
+    while read -r line
+    do
+        if ((is_firstline_done)) ; then
+            echo "$line"
+        else
+            echo "$fg[green]${line}$fg[white]"
+            is_firstline_done=1
+        fi
+    done <<< "$( dirs -v | head -7 )"
 
     # update the prompt
     if [[ "$(zstyle -L ":prezto:module:prompt")" =~ sorin ]] ; then
