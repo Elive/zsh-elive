@@ -213,7 +213,6 @@ $fg[yellow]
 More about Zsh
 ==============
 $fg[white]
-  - More Info & Best Tips:
   - Best Tips:     http://www.rayninfo.co.uk/tips/zshtips.html
   - Zsh Lovers:    http://grml.org/zsh/zsh-lovers.html
   - Globbing Match http://zsh.sourceforge.net/Intro/intro_2.html
@@ -224,6 +223,8 @@ $fg[white]
     - setopt:    options of zsh
     - alias:     aliases set
     - bindkey:   the "hotkeys" defined
+  - zsh features a powerful editor, check all the options available at:
+      http://www.cs.elte.hu/zsh-manual/zsh_14.html
 
 $fg[yellow]
 Fast Access to Common Files & Directories
