@@ -1,6 +1,12 @@
 # don't show input while loading
 stty -echo
 
+# STARTUP checkers
+if [[ ! -e "$HOME/.cache/zsh/zdirs" ]] ; then
+    mkdir -p "$HOME/.cache/zsh"
+    touch "$HOME/.cache/zsh/zdirs"
+fi
+
 #
 # FRAMEWORK BASE
 #
