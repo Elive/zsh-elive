@@ -219,6 +219,11 @@ $fg[white]
   - Globbing Match http://zsh.sourceforge.net/Intro/intro_2.html
   - zsh tips       http://www.rayninfo.co.uk/tips/zshtips.html
   - setopt options http://www.cs.elte.hu/zsh-manual/zsh_16.html
+  -
+  - run the following commands without arguments to know to what you have
+    - setopt:    options of zsh
+    - alias:     aliases set
+    - bindkey:   the "hotkeys" defined
 
 $fg[yellow]
 Fast Access to Common Files & Directories
