@@ -109,6 +109,10 @@ if [[ -d "${HOME}/.bash_completion.d" ]] ; then
     source "${HOME}/".bash_completion.d/* 2>/dev/null
 fi
 
+insert_sudo () { zle beginning-of-line; zle -U "sudo " }
+zle -N insert-sudo insert_sudo
+bindkey "^[s" insert-sudo
+
 
 
 #
@@ -297,6 +301,7 @@ The ZSH setup by Elive includes lots of features, for example:
   - with "Ctrl + -" you have an "undo" feature in your shell, even if you
     removed something or your expansion become very big or your contents
     changed, OMG BONUS!
+  - with "alt + s" you prepend the command with sudo, useful when you missed
 
 
 EOF
