@@ -208,7 +208,7 @@ function _directories_switcher_up() {
             echo "$fg[green]${line}$fg[white]"
             is_firstline_done=1
         fi
-    done <<< "$( dirs -v | head -7 )"
+    done <<< "$( dirs -v | head -9 )"
 
     # update the prompt
     if [[ "$(zstyle -L ":prezto:module:prompt")" =~ sorin ]] ; then
