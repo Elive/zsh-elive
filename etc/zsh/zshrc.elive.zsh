@@ -188,7 +188,8 @@ function chpwd() {
         # Get the dirstack from the file and add it to the current dirstack
         dirstack+=( ${(f)"$(< $DIRSTACKFILE)"} )
         dirstack=( ${(u)dirstack} )
-        dirs -pl | sort -u | grep -v "^${HOME}$" >! ${DIRSTACKFILE}
+        #dirs -pl | sort -u | grep -v "^${HOME}$" >! ${DIRSTACKFILE}
+        dirs -pl | grep -v "^${HOME}$" >! ${DIRSTACKFILE}
     fi
 }
 
