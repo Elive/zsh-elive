@@ -2,9 +2,10 @@
 stty -echo
 
 # STARTUP checkers
-if [[ ! -e "$HOME/.cache/zsh/zdirs" ]] ; then
+DIRSTACKFILE="$HOME/.cache/zsh/zdirs"
+if [[ ! -e "$DIRSTACKFILE" ]] ; then
     mkdir -p "$HOME/.cache/zsh"
-    touch "$HOME/.cache/zsh/zdirs"
+    touch "$DIRSTACKFILE"
 fi
 
 #
@@ -163,12 +164,34 @@ setopt CORRECT
 setopt noglobdots
 
 # dir stack options
-DIRSTACKSIZE=20
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 setopt PUSHD_MINUS
 unsetopt AUTO_NAME_DIRS
+
+DIRSTACKSIZE=32
+
+autoload -U is-at-least
+# Keep dirstack across logouts
+if [[ -f ${DIRSTACKFILE} ]] && [[ ${#dirstack[*]} -eq 0 ]] ; then
+    dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+    dirstack=( ${(u)dirstack} )
+fi
+
+# Make sure there are no duplicates
+typeset -U dirstack
+
+# Share dirstack between multiple zsh instances
+function chpwd() {
+    if is-at-least 4.1; then # dirs -p needs 4.1
+        # Get the dirstack from the file and add it to the current dirstack
+        dirstack+=( ${(f)"$(< $DIRSTACKFILE)"} )
+        dirstack=( ${(u)dirstack} )
+        dirs -pl | sort -u | grep -v "^${HOME}$" >! ${DIRSTACKFILE}
+    fi
+}
+
 
 # do not warn us about that a file already exist when using echo foo > bar
 setopt clobber
