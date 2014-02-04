@@ -123,6 +123,12 @@ zle -N sudo-command-line
 bindkey "^os" sudo-command-line
 #bindkey "^[s" sudo-command-line # I like "alt + s", but urxvt don't allow it
 
+if zle -N edit-command-line ; then
+    #k# Edit the current line in \kbd{\$EDITOR}
+    bindkey '\ee' edit-command-line
+fi
+
+
 
 
 
@@ -318,6 +324,7 @@ The ZSH setup by Elive includes lots of features, for example:
   - with "Ctrl + -" you have an "undo" feature in your shell, even if you
     removed something or your expansion become very big or your contents
     changed, OMG BONUS!
+  - with "alt + e" it opens your $EDITOR to edit your actual command
   - with "ctrl + o, s" you prepend the command with sudo, useful when you missed
 
 
