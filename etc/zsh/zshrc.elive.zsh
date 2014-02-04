@@ -192,6 +192,24 @@ function chpwd() {
     fi
 }
 
+# go to parent directory in stack with alt + p
+function _directories_switcher_up() {
+    popd
+
+    # show the stack
+    echo
+    dirs -v | head -7
+
+    # update the prompt
+    if [[ "$(zstyle -L ":prezto:module:prompt")" =~ sorin ]] ; then
+        prompt_sorin_pwd
+    fi
+    zle reset-prompt
+}
+zle -N _directories_switcher_up
+bindkey '\ep' '_directories_switcher_up'
+
+
 
 # do not warn us about that a file already exist when using echo foo > bar
 setopt clobber
@@ -357,6 +375,7 @@ The ZSH setup by Elive includes lots of features, for example:
     changed, OMG BONUS!
   - with "alt + e" it opens your $EDITOR to edit your actual command
   - with "ctrl + o, s" you prepend the command with sudo, useful when you missed
+  - with "alt + p" you go to the previous directory stack (last used dirs)
 
 
 EOF
