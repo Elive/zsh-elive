@@ -240,7 +240,7 @@ the 'sh' keyword, there's some examples: $fg[green]
  ---------
   - every shell maintains a history of the dirs stack, you can go back to
     previously worked directories (in their order) by simply pressing its
-    number (order) and enter, or "cd -NUM", or you can also "cp file ~-NUM",
+    number (order) and enter, or "cd -NUM", you can also "cp file ~-<TAB>",
     use "dirs -v" (or the "d" alias shortcut) to see where points each num
 
 $fg[yellow]
