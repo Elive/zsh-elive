@@ -346,9 +346,6 @@ Elive Features
 ==============
 $fg[white]
 The ZSH setup by Elive includes lots of features, for example:
-  - pressing "ctrl + e" and then a dot, will insert the last typed word again
-    (useful for similar words/dirs in your commands)
-  - run "alias" to know the ton of aliases already set
   - if you ssh to another elive, a tmux session is automatically opened for it
     (try: ssh localhost)
     - tmuxa / tmuxl are shortcuts to connect or list the sessions
@@ -367,15 +364,14 @@ The ZSH setup by Elive includes lots of features, for example:
       - "cd /u/lo/b<TAB>" expands to "cd /usr/local/bin"
     - use tab for corrections also, not only complete
   - Git: you have aliases and an identifying prompt for git statuses
-    http://4.bp.blogspot.com/-VEdW0qxzPCI/UTUpYhFutFI/AAAAAAAAJJc/00OAaDNZvIQ/s1600/prezto-git-icons-key.png
-  - if you have "per-directory-history" feature enabled in your .zpreztorc file,
-    with "Ctrl + g" you can switch from local and global history mode
   - run the command "history-stat" to know your top-10 most used commands
     (then create aliases/functions/scripts to improve in the commands that takes
     you more time!)
     - example "alias | grep git" to know which aliases you have available for
       common git commands
   - if you work in a common dir called git, type "cd d,git<TAB>" and you will
+  - pressing "ctrl + e" and then a dot, will insert the last typed word again
+    (useful for similar words/dirs in your commands)
     be expanded to it
   - press "alt + h" to get the help of the first command (zsh builtins too)
   - with "ctrl + i" similar to tab, expand or complete menu
