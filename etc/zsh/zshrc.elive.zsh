@@ -398,7 +398,7 @@ already know about them!
  ----
   - Shift + Ctrl + T:           Opens a new Tab
   - Ctrl + PagUp/Down:          Switches from the opened Tabs
-  - Ctrl + Home:		Selector of Tabs with mouse
+  - Ctrl + Shift + Home:	Selector of Tabs with mouse
   - Ctrl + (Number):		Go to the tab "number" directly
  Splits
  ------
