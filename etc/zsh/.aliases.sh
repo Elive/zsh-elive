@@ -1,5 +1,5 @@
 # Some apt shortcuts for your shell
-#alias aps="apt-get source"
+alias apsrc="apt-get source"
 alias apse="apt-cache search"
 alias apsh="apt-cache show"
 alias appo="apt-cache policy"
