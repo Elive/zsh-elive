@@ -430,6 +430,8 @@ Tmux is a terminal multiplexer similar to 'screen' with a lot of features, like
 being able to share the same terminal or open multiple instances/tabs, splits,
 and specially to be able to disconnect from the remote computer with the
 session opened
+  - note that the default "ctrl + b" of tmux is switched to "ctrl + a" for
+    compatibility with 'screen', you can switch back to 'b' in your .tmux.conf
   - Shift + Down:  Create a new tab
   - Ctrl + Left/Rigth:  Switch between tabs
   -
@@ -439,6 +441,7 @@ session opened
     - Ctrl-a l Move to previously selected window
     - Ctrl-a n Move to the next window
     - Ctrl-a p Move to the previous window
+    - Ctrl-a PagUp: Scroll up history, 'q' for finish
     - Ctrl-a & Kill the current window
     - Ctrl-a , Rename the current window
     - Ctrl-a % Split the current window into two panes
