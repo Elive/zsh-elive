@@ -307,7 +307,7 @@ $fg[white]
 With FASD feature you can fastly access to (commonly used) directories or
 files by triggering a remembered autocompleting list, if you do something like
 'vi ,sh' and press TAB, it will open an autocomplete list of matches including
-the 'sh' keyword, there's some examples: $fg[green]
+the 'sh' keyword, there's some examples:
  fasd
  ----
   - use 'j' to interactivey enter in commonly used directories
