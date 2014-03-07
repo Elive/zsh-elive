@@ -430,30 +430,32 @@ Tmux is a terminal multiplexer similar to 'screen' with a lot of features, like
 being able to share the same terminal or open multiple instances/tabs, splits,
 and specially to be able to disconnect from the remote computer with the
 session opened
-  - note that the default "ctrl + b" of tmux is switched to "ctrl + a" for
-    compatibility with 'screen', you can switch back to 'b' in your .tmux.conf
-  - Shift + Down:  Create a new tab
-  - Ctrl + Left/Rigth:  Switch between tabs
-  -
   - Ctrl + a:  is the trigger for the tmux actions (originally was 'b'), like:
-    - Ctrl-a c Create new window
-    - Ctrl-a d Detach current client, to keep the session opened
-    - Ctrl-a l Move to previously selected window
-    - Ctrl-a n Move to the next window
-    - Ctrl-a p Move to the previous window
+    - Ctrl-a c  Create new window (also Shift + Down)
+    - Ctrl-a d  Detach current client, to keep the session opened
+    - Ctrl-a l  Move to previously selected window
+    - Ctrl-a n  Move to the next window
+    - Ctrl-a p  Move to the previous window
+    - Ctrl + Left/Rigth:  Switch between tabs
     - Ctrl-a PagUp: Scroll up history, 'q' for finish
-    - Ctrl-a & Kill the current window
-    - Ctrl-a , Rename the current window
-    - Ctrl-a % Split the current window into two panes
-    - Ctrl-a o Switch to the next pane
-    - Ctrl-a ? List all keybindings
+    - Ctrl-a &  Kill the current window
+    - Ctrl-a ,  Rename the current window
+    - Ctrl-a %  Split the current window into two panes
+    - Ctrl-a o  Switch to the next pane
+    - Ctrl-a ?  List all keybindings
     -
-    - Ctrl-a | Split window horizontally
-    - Ctrl-a - Split window vertically
-    - Ctrl-a q Show pane numbers (used to switch between panes)
-    - Ctrl-a t Split to a small window in the bottom, useful for fast needs!
+    - Ctrl-a |  Split window horizontally
+    - Ctrl-a -  Split window vertically
+    - Ctrl-a q  Show pane numbers (used to switch between panes)
+    - Ctrl-a H/J/K/L  Resize panes
+    - Ctrl-a t  Split to a small window in the bottom, useful for fast needs!
     -
-    - read your $HOME/.tmux.conf file for more info in the comments
+    - If you have a tmux inside another tmux (nested), like when ssh twice,
+      you can press 'a' the amount of times the nest is located, for example,
+      'Ctrl-a a a c' will create a new window in the third-nested tmux
+    - Ctrl-b  Is used like a fast hotkey for the second-nested sub-tmux
+    -
+    - Much more: see the comments in your $HOME/.tmux.conf file
 
 EOF
 fi

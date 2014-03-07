@@ -9,7 +9,13 @@ ZDOTDIR="/etc/zsh"
 source /etc/zsh/zshrc.elive.zsh
 unset ZDOTDIR
 
+# get elive-tools features
+source /usr/lib/elive-tools/functions
+# we really want to setup our shell environment
+# for example having access to the DISPLAY variable from ssh or others
+el_make_environment
 
+# help
 echo "                     $fg[green]Type 'help' to know the ton of Elive features available...$reset_color"
 
 # do we are in tmux?
