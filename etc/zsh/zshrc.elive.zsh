@@ -472,9 +472,21 @@ $fg[green]
 
 
 
+EOF
+
+# show how to scroll up
+if [[ "$TERM" = "screen-256color" ]] ; then
+    cat << EOF
+$fg[cyan]
+Press 'Ctrl + a' and then PagUp for scroll up (tmux)
+  + and then 'q' for quit the scroll mode
+EOF
+else
+    cat << EOF
 $fg[cyan]
 Press Shift + PagUp to scroll up in your terminal
 EOF
+fi
 
 }
 
