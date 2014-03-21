@@ -37,6 +37,8 @@ zstyle ':completion:*:*:cd:*' ignored-patterns '(*/|)(CVS|SCCS)'
 zstyle ':completion::*:(rm|trash|rmdir):*' ignore-line true
 # similar: do not complete own dir when cd ../<TAB>
 zstyle ':completion:*' ignore-parents parent pwd
+# complete things like:  cd ..<TAB>
+zstyle ':completion:*' special-dirs true
 
 # propose a better history search way:
 __correct_ctrl_r_to_better_history() {
