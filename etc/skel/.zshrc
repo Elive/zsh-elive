@@ -1,4 +1,7 @@
 ################# Start Elive default confs ###################
+# Disable Talked Voices in your computer?
+# note: check also your .zprofile file
+#NOVOICE=1
 #
 # To source the confs from /etc allows you to obtain fixes and improvments to your shell by upgrading the related packages, however you can copy the file locally to your home and source it instead, but we suggest to keep the things as how they are set.
 #

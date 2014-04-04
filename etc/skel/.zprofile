@@ -5,3 +5,8 @@ source /etc/zsh/zprofile.elive.zsh
 
 # Customize to your needs here...
 
+# Disable Talked Voices in your computer?
+# if you set this value you will be not informed via voice when a new connection happened to your computer
+# note: this option must be set BEFORE the first source line
+#NOVOICE=1
+
