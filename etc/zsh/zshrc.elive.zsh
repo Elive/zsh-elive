@@ -30,8 +30,9 @@ setopt HIST_EXPIRE_DUPS_FIRST
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 
 # ignore completion for specific files
-zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*?.swp'
-zstyle ':completion:*:*:cd:*' ignored-patterns '(*/|)(CVS|SCCS)'
+# note: if you enable them, you cannot autocomplete them, and you may want to, in fact (what about rm, huh ?)
+#zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*?.swp'
+#zstyle ':completion:*:*:cd:*' ignored-patterns '(*/|)(CVS|SCCS)'
 
 # do not include repeated matches for specific commands, like rm, we don't want to remove a file twice so it will skip to the next match, like: rm two t<tab> => three
 zstyle ':completion::*:(rm|trash|rmdir):*' ignore-line true
