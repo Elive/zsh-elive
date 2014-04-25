@@ -12,7 +12,7 @@ ZDOTDIR="/etc/zsh"
 source /etc/zsh/zshrc.elive.zsh
 unset ZDOTDIR
 
-# get elive-tools features
+# get elive-tools features {{{
 if [[ -x /usr/lib/elive-tools/functions ]] ; then
     source /usr/lib/elive-tools/functions
 
@@ -20,6 +20,38 @@ if [[ -x /usr/lib/elive-tools/functions ]] ; then
     # for example having access to the DISPLAY variable from ssh or others
     el_make_environment
 fi
+# Elive functions loaded from here }}}
+
+# zprezto git plugin {{{
+# is disabled by default because is slow, enable if needed in some future
+git_plugin_enable_when_needed() {
+    local r
+    if [[ -d ".git" ]] ; then
+        echo -e "Wait a second! Elive includes a nice 'git' plugin for your shell.\n\nThe only problem is that it makes your shell slower when the new prompt is generated (when the shell returns), we are going to activate the 'git' plugin now because we detected that you have a .git directory here, this plugin contains features like showing the git status everytime in your prompt, or a ton of git aliases.\n\nNow, if you want to disable it because you feel it slower, just edit the .zpreztorc file in your home directory and remove the git line from the list of plugins to load."
+
+        if el_confirm "\nHave you understood this message ?" ; then
+            # disable this function
+            sed -i 's|^precmd_functions+=(git_plugin_enable_when_needed)|#precmd_functions+=(git_plugin_enable_when_needed)|g' "$HOME/.zshrc"
+        fi
+
+        # enable the plugin if is not yet enabled
+        if ! grep -qs "'git' \\\\" "$HOME/.zpreztorc" ; then
+            sed -i "s|'syntax-highlighting.*$|'git' \\\\\n  'syntax-highlighting' \\\|g" "$HOME/.zpreztorc"
+        fi
+
+        # remove from actual session
+        r=$precmd_functions[(I)git_plugin_enable_when_needed]
+        precmd_functions[r]=()
+    fi
+}
+# - zprezto git plugin }}}
+
+# list of functions to run at each returned shell
+typeset -a precmd_functions
+# if you have a dir called .git, it will run that function, until you confirm, then will be disabled
+precmd_functions+=(git_plugin_enable_when_needed)
+
+
 
 # help
 echo "                     $fg[green]Type 'help' to know the ton of Elive features available...$reset_color"
@@ -37,3 +69,7 @@ fi
 
 
 
+
+
+
+# vim: set foldmethod=marker :
