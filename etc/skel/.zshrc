@@ -27,19 +27,20 @@ fi
 git_plugin_enable_when_needed() {
     local r
     if [[ -d ".git" ]] ; then
-        echo -e "Wait a second! Elive includes a nice 'git' plugin for your shell.\n\nThe only problem is that it makes your shell slower when the new prompt is generated (when the shell returns), we are going to activate the 'git' plugin now because we detected that you have a .git directory here, this plugin contains features like showing the git status everytime in your prompt, or a ton of git aliases.\n\nNow, if you want to disable it because you feel it slower, just edit the .zpreztorc file in your home directory and remove the git line from the list of plugins to load."
+        echo -e "Git directory found here, Elive includes a nice 'git' plugin for your shell, it contains features like showing the git status everytime in your prompt, or a ton of git aliases.\n\nThe only problem is that it makes your shell slower when the new prompt is generated (when the shell returns), if you enable it you can disactivate the plugin later by just edit the .zpreztorc file in your home directory and remove the git line from the list of plugins to load."
 
-        if el_confirm "\nHave you understood this message ?" ; then
-            # disable this function
-            sed -i 's|^precmd_functions+=(git_plugin_enable_when_needed)|#precmd_functions+=(git_plugin_enable_when_needed)|g' "$HOME/.zshrc"
+        if el_confirm "\nDo you want to activate it ?" ; then
+            # enable the plugin if is not yet enabled
+            if ! grep -qs "'git' \\\\" "$HOME/.zpreztorc" ; then
+                sed -i "s|'syntax-highlighting.*$|'git' \\\\\n  'syntax-highlighting' \\\|g" "$HOME/.zpreztorc"
+                echo -e "Git plugin for your shell activated, run the command 'zsh' to start a new updated shell"
+            fi
         fi
 
-        # enable the plugin if is not yet enabled
-        if ! grep -qs "'git' \\\\" "$HOME/.zpreztorc" ; then
-            sed -i "s|'syntax-highlighting.*$|'git' \\\\\n  'syntax-highlighting' \\\|g" "$HOME/.zpreztorc"
-        fi
+        # disable this function checker
+        sed -i 's|^precmd_functions+=(git_plugin_enable_when_needed)|#precmd_functions+=(git_plugin_enable_when_needed)|g' "$HOME/.zshrc"
 
-        # remove from actual session
+        # remove this function checker from actual shell / session
         r=$precmd_functions[(I)git_plugin_enable_when_needed]
         precmd_functions[r]=()
     fi
