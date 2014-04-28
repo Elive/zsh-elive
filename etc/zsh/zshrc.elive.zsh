@@ -344,6 +344,8 @@ Zsh by default allows you to have a good amount of features, for example:
   - ls -l */**(Lk+100) # List all files larger than 100kb in this tree
   - ls DATA_[0-9](#c4,7).csv # List DATA_nnnn.csv to DATA_nnnnnnn.csv
 
+To have a list of all those glob qualifiers, use the tab as:  ls ./(TAB
+
 $fg[yellow]
 Elive Features
 ==============
