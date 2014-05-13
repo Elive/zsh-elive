@@ -36,8 +36,8 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:
 
 # do not include repeated matches for specific commands, like rm, we don't want to remove a file twice so it will skip to the next match, like: rm two t<tab> => three
 zstyle ':completion::*:(rm|trash|rmdir):*' ignore-line true
-# similar: do not complete own dir when cd ../<TAB>
-zstyle ':completion:*' ignore-parents parent pwd
+# similar: do not complete own dir when cd ../<TAB> # actually this feature is more annoying than other thing
+#zstyle ':completion:*' ignore-parents parent pwd
 # complete things like:  cd ..<TAB>
 zstyle ':completion:*' special-dirs true
 
