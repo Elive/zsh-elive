@@ -55,11 +55,14 @@ function git(){
     if [[ -n "$2" ]] && alias | grep git | grep -qs "${1}.*${2}" ; then
         echo -e "$fg[green]Aliases suggested:$reset_color"
         alias | grep git | grep "${1}.*${2}"
-        echo -e "$fg[green]-$reset_color"
+        echo -e "$fg[gray]Note: you can remove this message editing your $HOME/.zshrc$reset_color"
+        echo -e "$fg[green]------------------$reset_color"
     else if [[ -n "$1" ]] && alias | grep git | grep -qs "$1" ; then
+
         echo -e "$fg[green]Aliases suggested:$reset_color"
         alias | grep git | grep "$1"
-        echo -e "$fg[green]-$reset_color"
+        echo -e "$fg[gray]Note: you can remove this message editing your $HOME/.zshrc$reset_color"
+        echo -e "$fg[green]------------------$reset_color"
     fi
 fi
 # run it for real now
