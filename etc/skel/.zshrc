@@ -48,6 +48,9 @@ git_plugin_enable_when_needed() {
 
 # extremely useful realtime helper for git {{{
 # remove the entire function block if you found it annoying
+# BUT: if you found it annoying it is a good signal, it forces you to
+# lose one second reading the alternative/alias, if there's not one for
+# your most-used git command, just add your own on this file
 function git(){
     if [[ -n "$2" ]] && alias | grep git | grep -qs "${1}.*${2}" ; then
         echo -e "$fg[green]Aliases suggested:$reset_color"
