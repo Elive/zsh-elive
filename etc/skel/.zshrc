@@ -45,6 +45,27 @@ git_plugin_enable_when_needed() {
         precmd_functions[r]=()
     fi
 }
+
+# extremely useful realtime helper for git {{{
+# remove the entire function block if you found it annoying
+function git(){
+    if [[ -n "$2" ]] && alias | grep git | grep -qs "${1}.*${2}" ; then
+        echo -e "$fg[green]Aliases suggested:$reset_color"
+        alias | grep git | grep "${1}.*${2}"
+        echo -e "$fg[green]-$reset_color"
+    else if [[ -n "$1" ]] && alias | grep git | grep -qs "$1" ; then
+        echo -e "$fg[green]Aliases suggested:$reset_color"
+        alias | grep git | grep "$1"
+        echo -e "$fg[green]-$reset_color"
+    fi
+fi
+# run it for real now
+command git "$@"
+}
+
+# }}}
+
+
 # - zprezto git plugin }}}
 
 # list of functions to run at each returned shell
