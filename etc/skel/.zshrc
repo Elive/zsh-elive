@@ -52,21 +52,13 @@ git_plugin_enable_when_needed() {
 # lose one second reading the alternative/alias, if there's not one for
 # your most-used git command, just add your own on this file
 function git(){
-    if [[ -n "$2" ]] && alias | grep git | grep -qs "${1}.*${2}" ; then
-        echo -e "$fg[green]Aliases suggested:$reset_color"
-        alias | grep git | grep "${1}.*${2}"
-        echo -e "$fg[gray]Note: you can remove this message editing your $HOME/.zshrc$reset_color"
-        echo -e "$fg[green]------------------$reset_color"
-    else if [[ -n "$1" ]] && alias | grep git | grep -qs "$1" ; then
-
-        echo -e "$fg[green]Aliases suggested:$reset_color"
+    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep git | grep -qs "$1" ; then
+        #echo -e "$fg[green] -- Aliases suggested from .zshrc --$reset_color"
+        echo -e "$fg[green] -- Aliases suggested --$reset_color"
         alias | grep git | grep "$1"
-        echo -e "$fg[gray]Note: you can remove this message editing your $HOME/.zshrc$reset_color"
-        echo -e "$fg[green]------------------$reset_color"
     fi
-fi
-# run it for real now
-command git "$@"
+    # run it for real now
+    command git "$@"
 }
 
 # }}}
