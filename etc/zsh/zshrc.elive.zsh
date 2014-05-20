@@ -370,6 +370,7 @@ The ZSH setup by Elive includes lots of features, for example:
       - "cd /u/lo/b<TAB>" expands to "cd /usr/local/bin"
     - use tab for corrections also, not only complete
   - Git: you have aliases and an identifying prompt for git statuses
+    - runtime aliases suggestions for common git commands (from ~/.zshrc)
   - run the command "history-stat" to know your top-10 most used commands
     (then create aliases/functions/scripts to improve in the commands that takes
     you more time!)

@@ -55,7 +55,7 @@ function git(){
     if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep git | grep -qs "$1" ; then
         #echo -e "$fg[green] -- Aliases suggested from .zshrc --$reset_color"
         echo -e "$fg[green] -- Aliases suggested --$reset_color"
-        alias | grep git | grep "$1"
+        alias | grep git | sed -e 's|is_alias=1 ||g' | grep "$1"
     fi
     # run it for real now
     command git "$@"
