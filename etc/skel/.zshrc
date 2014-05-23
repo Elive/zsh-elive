@@ -27,9 +27,9 @@ fi
 git_plugin_enable_when_needed() {
     local r
     if [[ -d ".git" ]] ; then
-        echo -e "Git directory found here, Elive includes a nice 'git' plugin for your shell, it contains features like showing the git status everytime in your prompt, or a ton of git aliases.\n\nThe only problem is that it makes your shell slower when the new prompt is generated (when the shell returns), if you enable it you can disactivate the plugin later by just edit the .zpreztorc file in your home directory and remove the git line from the list of plugins to load."
+        echo -e "Do you want GIT plugin for your shell? This plugin makes your shell to be SLOW, only activate it if you are a very git-active user, you can also use only the aliases, you can deactivate it later by removing the entry from the ~/.zpreztorc file."
 
-        if el_confirm "\nDo you want to activate it ?" ; then
+        if el_confirm "\nActivate git plugin ?" ; then
             # enable the plugin if is not yet enabled
             if ! grep -qs "'git' \\\\" "$HOME/.zpreztorc" ; then
                 sed -i "s|'syntax-highlighting.*$|'git' \\\\\n  'syntax-highlighting' \\\|g" "$HOME/.zpreztorc"
@@ -53,9 +53,8 @@ git_plugin_enable_when_needed() {
 # your most-used git command, just add your own on this file
 function git(){
     if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep git | grep -qs "$1" ; then
-        #echo -e "$fg[green] -- Aliases suggested from .zshrc --$reset_color"
-        echo -e "$fg[green] -- Aliases suggested --$reset_color"
-        alias | grep git | sed -e 's|is_alias=1 ||g' | grep "$1"
+        echo -e "$fg[green] -- Aliases suggested --$reset_color" 1>&2
+        alias | grep git | sed -e 's|is_alias=1 ||g' | grep "$1" 1>&2
     fi
     # run it for real now
     command git "$@"
