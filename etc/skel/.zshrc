@@ -52,12 +52,13 @@ git_plugin_enable_when_needed() {
 # lose one second reading the alternative/alias, if there's not one for
 # your most-used git command, just add your own on this file
 function git(){
+    # run it for real now
+    command git "$@"
+
     if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep git | grep -qs "$1" ; then
         echo -e "$fg[green] -- Aliases suggested --$reset_color" 1>&2
         alias | grep git | sed -e 's|is_alias=1 ||g' | grep "$1" 1>&2
     fi
-    # run it for real now
-    command git "$@"
 }
 
 # }}}
