@@ -88,15 +88,15 @@ PR_NO_COLOR="%{$terminfo[sgr0]%}"
 # Dot substitution as you type, much better than the classic ... aliases
 _rationalise-dot() {
     if [[ $LBUFFER == "cd "* ]] || [[ $LBUFFER =~ "[^ ]*" ]]; then
-	if [[ $LBUFFER = *.. ]]; then
-	    LBUFFER+=/..
-	elif [[ $LBUFFER == "cd." ]]; then
-	    LBUFFER="cd .."
-	else
-	    LBUFFER+=.
-	fi
+        if [[ $LBUFFER = *.. ]]; then
+            LBUFFER+=/..
+        elif [[ $LBUFFER == "cd." ]]; then
+            LBUFFER="cd .."
+        else
+            LBUFFER+=.
+        fi
     else
-	LBUFFER+=.
+        LBUFFER+=.
     fi
 }
 zle -N _rationalise-dot
