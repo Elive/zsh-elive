@@ -85,22 +85,25 @@ done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
 
-# Dot substitution as you type, much better than the classic ... aliases
-_rationalise-dot() {
-    if [[ $LBUFFER == "cd "* ]] || [[ $LBUFFER =~ "[^ ]*" ]]; then
-        if [[ $LBUFFER = *.. ]]; then
-            LBUFFER+=/..
-        elif [[ $LBUFFER == "cd." ]]; then
-            LBUFFER="cd .."
-        else
-            LBUFFER+=.
-        fi
-    else
-        LBUFFER+=.
-    fi
+# just type '...' to get '../..'
+function rationalise-dot() {
+  local MATCH dir
+  if [[ $LBUFFER =~ '(^|/| | |'$'\n''|\||;|&)\.\.$' ]]; then
+      LBUFFER+=/
+      zle self-insert
+      zle self-insert
+      dir=${${(z)LBUFFER}[-1]}
+      [[ -e $dir ]] && zle -M $dir(:a)
+  elif [[ $LBUFFER[-1] == '.' ]]; then
+      zle self-insert
+      dir=${${(z)LBUFFER}[-1]}
+      [[ -e $dir ]] && zle -M $dir(:a)
+  else
+      zle self-insert
+  fi
 }
-zle -N _rationalise-dot
-bindkey . _rationalise-dot
+zle -N rationalise-dot
+bindkey . rationalise-dot
 
 
 #
