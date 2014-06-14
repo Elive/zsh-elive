@@ -52,6 +52,8 @@ bindkey "^r" __correct_ctrl_r_to_better_history
 # not convinced with "sharedhistory", it don't allow you to replay easly commands in the same terminals
 setopt nosharehistory
 
+# when we logout the terminal, we want to push our actual directory, so that alt+p will put us back to the last dir in closed terminals too, useful specially for when you close a terminal accidentally
+trap "pushd" EXIT
 
 
 #
