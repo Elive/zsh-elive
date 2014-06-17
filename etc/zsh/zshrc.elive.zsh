@@ -349,6 +349,7 @@ Zsh by default allows you to have a good amount of features, for example:
   - ls -l */**(Lk+100) # List all files larger than 100kb in this tree
   - ls DATA_[0-9](#c4,7).csv # List DATA_nnnn.csv to DATA_nnnnnnn.csv
   - ls (#a1)foobar     # Approximate matching, list fobar, foobra, or foxbar.
+  - for i in *zip ; unzip "$i"   # Much simpler alternative to run a 'for loop'
 
 To have a list of all those glob qualifiers, use the tab as:  ls ./(TAB
 
