@@ -144,6 +144,11 @@ if zle -N edit-command-line ; then
 fi
 
 
+# add ccache by default to our PATH if we have it installed
+if [[ -L /usr/lib/ccache/cc ]] ; then
+    PATH="/usr/lib/ccache:${PATH}"
+fi
+
 
 
 
