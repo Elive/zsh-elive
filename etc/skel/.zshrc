@@ -46,20 +46,23 @@ git_plugin_enable_when_needed() {
     fi
 }
 
-# extremely useful realtime helper for git {{{
-# remove the entire function block if you found it annoying
-# BUT: if you found it annoying it is a good signal, it forces you to
-# lose one second reading the alternative/alias, if there's not one for
-# your most-used git command, just add your own on this file
+# very useful realtime helper for git {{{
+# TO DISABLE: comment or remove entirely this function
+# But note that being annoying is a good thing, it forces you to use 
+# the alternatives, which is shorter to type, read and use them when appear
 function git(){
-    # run it for real now
+    # run the real git command first
     command git "$@"
 
     if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep git | grep -qs "$1" ; then
         echo -e "$fg[green] -- Aliases suggested --$reset_color" 1>&2
-        alias | grep git | sed -e 's|is_alias=1 ||g' | grep "$1" 1>&2
+        alias | grep git | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep "$1" 1>&2
+        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
     fi
 }
+
+# Extra git Alias example, write your own:
+#gfr='is_alias=1 git pull --rebase'
 
 # }}}
 
