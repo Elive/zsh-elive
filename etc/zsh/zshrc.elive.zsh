@@ -343,6 +343,7 @@ $fg[white]
 Zsh by default allows you to have a good amount of features, for example:
 
   - ls *(.)            # list just regular files
+  - ls -Slh -- **/*(.) # list all files recursively, sort by size
   - ls *(/)            # list just directories
   - ls -ld *(/om[1,3]) # Show three newest directories. "om" orders by
     modification. "[1,3]" works like Python slice.  
