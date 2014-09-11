@@ -185,6 +185,13 @@ unsetopt AUTO_NAME_DIRS
 
 DIRSTACKSIZE=300
 
+setopt autopushd pushdsilent pushdtohome
+
+## Remove duplicate entries
+setopt pushdignoredups
+#
+### This reverts the +/- operators.
+setopt pushdminus
 autoload -U is-at-least
 # Keep dirstack across logouts
 if [[ -f ${DIRSTACKFILE} ]] && [[ ${#dirstack[*]} -eq 0 ]] ; then
@@ -197,12 +204,26 @@ typeset -U dirstack
 
 # Share dirstack between multiple zsh instances
 function chpwd() {
+    local line
     if is-at-least 4.1; then # dirs -p needs 4.1
         # Get the dirstack from the file and add it to the current dirstack
         dirstack+=( ${(f)"$(< $DIRSTACKFILE)"} )
         dirstack=( ${(u)dirstack} )
+
         #dirs -pl | sort -u | grep -v "^${HOME}$" >! ${DIRSTACKFILE}
-        dirs -pl | head -n "$DIRSTACKSIZE" | grep -E "^[[:print:]][[:alnum:]]" | grep -v "^${HOME}$"  >! "${DIRSTACKFILE}"
+        #dirs -pl | head -n "$DIRSTACKSIZE" | grep -E "^[[:print:]][[:alnum:]]" | grep -v "^${HOME}$"  >! "${DIRSTACKFILE}"
+
+        # empty it first
+        : >! "$DIRSTACKFILE"
+
+        while read -ru 3 line
+        do
+            if ! [[ "$line" = "$HOME" ]] ; then
+                if [[ -d "$line" ]] ; then
+                    echo "$line" >> "$DIRSTACKFILE"
+                fi
+            fi
+        done 3<<< "$( dirs -p | head -n "$DIRSTACKSIZE" )"
     fi
 }
 
@@ -213,7 +234,7 @@ function _directories_switcher_up() {
     popd
 
     # show the stack
-    echo -e "\n $fg[yellow] -- Directory Stack -- $fg[white]"
+    echo -e "\n $fg[yellow] -- Next Directories in the Stack -- $fg[white]"
     while read -r line
     do
         if ((is_firstline_done)) ; then
@@ -222,7 +243,7 @@ function _directories_switcher_up() {
             echo "$fg[green]${line}$fg[white]"
             is_firstline_done=1
         fi
-    done <<< "$( dirs -v | grep -v "[[:blank:]]*~$" | head -19 )"
+    done <<< "$( dirs -v | grep -v "[[:blank:]]*~$" | head -20 )"
 
     # update the prompt
     if [[ "$(zstyle -L ":prezto:module:prompt")" =~ sorin ]] ; then
@@ -402,6 +423,7 @@ The ZSH setup by Elive includes lots of features, for example:
   - with "alt + e" it opens your $EDITOR to edit your actual command
   - with "ctrl + o, s" you prepend the command with sudo, useful when you missed
   - with "alt + p" you go to the previous directory stack (last used dirs)
+    alternatively you can use the default cd -<TAB> for the full list
 
 
 EOF
