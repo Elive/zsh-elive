@@ -202,7 +202,7 @@ function chpwd() {
         dirstack+=( ${(f)"$(< $DIRSTACKFILE)"} )
         dirstack=( ${(u)dirstack} )
         #dirs -pl | sort -u | grep -v "^${HOME}$" >! ${DIRSTACKFILE}
-        dirs -pl | grep -v "^${HOME}$" >! ${DIRSTACKFILE}
+        dirs -pl | grep -E "^[[:print:]][[:alnum:]]" | grep -v "^${HOME}$"  >! ${DIRSTACKFILE}
     fi
 }
 
