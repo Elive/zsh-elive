@@ -208,22 +208,11 @@ function chpwd() {
     if is-at-least 4.1; then # dirs -p needs 4.1
         # Get the dirstack from the file and add it to the current dirstack
         dirstack+=( ${(f)"$(< $DIRSTACKFILE)"} )
-        dirstack=( ${(u)dirstack} )
+        #dirstack=( ${(u)dirstack} )
 
         #dirs -pl | sort -u | grep -v "^${HOME}$" >! ${DIRSTACKFILE}
-        #dirs -pl | head -n "$DIRSTACKSIZE" | grep -E "^[[:print:]][[:alnum:]]" | grep -v "^${HOME}$"  >! "${DIRSTACKFILE}"
+        dirs -pl | head -n "$DIRSTACKSIZE" | grep -E "^[[:print:]][[:alnum:]]" | grep -v "^${HOME}$"  >! "${DIRSTACKFILE}"
 
-        # empty it first
-        : >! "$DIRSTACKFILE"
-
-        while read -ru 3 line
-        do
-            if ! [[ "$line" = "$HOME" ]] ; then
-                if [[ -d "$line" ]] ; then
-                    echo "$line" >> "$DIRSTACKFILE"
-                fi
-            fi
-        done 3<<< "$( dirs -p | head -n "$DIRSTACKSIZE" )"
     fi
 }
 
