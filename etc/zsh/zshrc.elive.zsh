@@ -183,7 +183,7 @@ setopt PUSHD_SILENT
 setopt PUSHD_MINUS
 unsetopt AUTO_NAME_DIRS
 
-DIRSTACKSIZE=32
+DIRSTACKSIZE=300
 
 autoload -U is-at-least
 # Keep dirstack across logouts
@@ -202,10 +202,11 @@ function chpwd() {
         dirstack+=( ${(f)"$(< $DIRSTACKFILE)"} )
         dirstack=( ${(u)dirstack} )
         #dirs -pl | sort -u | grep -v "^${HOME}$" >! ${DIRSTACKFILE}
-        dirs -pl | grep -E "^[[:print:]][[:alnum:]]" | grep -v "^${HOME}$"  >! ${DIRSTACKFILE}
+        dirs -pl | head -n "$DIRSTACKSIZE" | grep -E "^[[:print:]][[:alnum:]]" | grep -v "^${HOME}$"  >! "${DIRSTACKFILE}"
     fi
 }
 
+# note: alternatively and more easly, you can use cd -<TAB>
 # go to parent directory in stack with alt + p
 function _directories_switcher_up() {
     local line is_firstline_done
@@ -221,7 +222,7 @@ function _directories_switcher_up() {
             echo "$fg[green]${line}$fg[white]"
             is_firstline_done=1
         fi
-    done <<< "$( dirs -v | head -9 )"
+    done <<< "$( dirs -v | grep -v "[[:blank:]]*~$" | head -16 )"
 
     # update the prompt
     if [[ "$(zstyle -L ":prezto:module:prompt")" =~ sorin ]] ; then
