@@ -222,7 +222,7 @@ function _directories_switcher_up() {
             echo "$fg[green]${line}$fg[white]"
             is_firstline_done=1
         fi
-    done <<< "$( dirs -v | grep -v "[[:blank:]]*~$" | head -16 )"
+    done <<< "$( dirs -v | grep -v "[[:blank:]]*~$" | head -19 )"
 
     # update the prompt
     if [[ "$(zstyle -L ":prezto:module:prompt")" =~ sorin ]] ; then
