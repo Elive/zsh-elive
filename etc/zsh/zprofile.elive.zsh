@@ -4,9 +4,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile" ]]; then
 fi
 
 if [ -d /etc/zsh/zprofile.d ]; then
-  for i in /etc/zsh/zprofile.d/*sh ; do
-    if [ -r $i ]; then
-      . $i
+  for i in /etc/zsh/zprofile.d/*.sh ; do
+    if [ -x "$i" ]; then
+      zsh "$i"
     fi
   done
   unset i
