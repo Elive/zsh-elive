@@ -406,7 +406,7 @@ The ZSH setup by Elive includes lots of features, for example:
     (useful for similar words/dirs in your commands)
     be expanded to it
   - press "alt + h" to get the help of the first command (zsh builtins too)
-  - with "ctrl + i" similar to tab, expand or complete menu
+  - typing 'esc' and '/' will autocomplete to previous recent files or commands!
   - with "Ctrl + w" you remove the last word, this feature is extremely useful
   - with "Ctrl + -" you have an "undo" feature in your shell, even if you
     removed something or your expansion become very big or your contents
