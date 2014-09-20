@@ -40,6 +40,8 @@ zstyle ':completion::*:(rm|trash|rmdir):*' ignore-line true
 #zstyle ':completion:*' ignore-parents parent pwd
 # complete things like:  cd ..<TAB>
 zstyle ':completion:*' special-dirs true
+# when vim, autocomplete normal tab including subdirs showing files
+zstyle ':completion:*:*:vim:*' file-patterns '**/%p*:recurse\ search' '%p:globbed files'
 
 # propose a better history search way:
 __correct_ctrl_r_to_better_history() {
