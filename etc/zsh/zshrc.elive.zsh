@@ -310,23 +310,6 @@ $fg[blue]
 
 
 $fg[yellow]
-More about Zsh
-==============
-$fg[white]
-  - Best Tips:     http://www.rayninfo.co.uk/tips/zshtips.html
-  - Zsh Lovers:    http://grml.org/zsh/zsh-lovers.html
-  - Globbing Match http://zsh.sourceforge.net/Intro/intro_2.html
-  - zsh tips       http://www.rayninfo.co.uk/tips/zshtips.html
-  - setopt options http://www.cs.elte.hu/zsh-manual/zsh_16.html
-  -
-  - run the following commands without arguments to know to what you have
-    - setopt:    options of zsh
-    - alias:     aliases set
-    - bindkey:   the "hotkeys" defined
-  - zsh features a powerful editor, check all the options available at:
-      http://www.cs.elte.hu/zsh-manual/zsh_14.html
-
-$fg[yellow]
 Fast Access to Common Files & Directories
 =========================================
 $fg[white]
@@ -371,6 +354,23 @@ Zsh by default allows you to have a good amount of features, for example:
   - for i in *zip ; unzip "$i"   # Much simpler alternative to run a 'for loop'
 
 To have a list of all those glob qualifiers, use the tab as:  ls ./(TAB
+
+$fg[yellow]
+More about Zsh
+==============
+$fg[white]
+  - Best Tips:     http://www.rayninfo.co.uk/tips/zshtips.html
+  - Zsh Lovers:    http://grml.org/zsh/zsh-lovers.html
+  - Globbing Match http://zsh.sourceforge.net/Intro/intro_2.html
+  - zsh tips       http://www.rayninfo.co.uk/tips/zshtips.html
+  - setopt options http://www.cs.elte.hu/zsh-manual/zsh_16.html
+  -
+  - run the following commands without arguments to know to what you have
+    - setopt:    options of zsh
+    - alias:     aliases set
+    - bindkey:   the "hotkeys" defined
+  - zsh features a powerful editor, check all the options available at:
+      http://www.cs.elte.hu/zsh-manual/zsh_14.html
 
 $fg[yellow]
 Elive Features
