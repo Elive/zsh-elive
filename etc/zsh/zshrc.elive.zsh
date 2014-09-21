@@ -356,6 +356,13 @@ Zsh by default allows you to have a good amount of features, for example:
 To have a list of all those glob qualifiers, use the tab as:  ls ./(TAB
 
 $fg[yellow]
+Zsh Pro Tips
+============
+$fg[white]
+  - type echo ${(<tab  to see the parameter flags like (N) for null glob
+
+
+$fg[yellow]
 More about Zsh
 ==============
 $fg[white]
