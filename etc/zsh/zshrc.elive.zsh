@@ -352,15 +352,9 @@ Zsh by default allows you to have a good amount of features, for example:
   - ls DATA_[0-9](#c4,7).csv # List DATA_nnnn.csv to DATA_nnnnnnn.csv
   - ls (#a1)foobar     # Approximate matching, list fobar, foobra, or foxbar.
   - for i in *zip ; unzip "$i"   # Much simpler alternative to run a 'for loop'
-
-To have a list of all those glob qualifiers, use the tab as:  ls ./(TAB
-
-$fg[yellow]
-Zsh Pro Tips
-============
-$fg[white]
   - type echo ${(<tab  to see the parameter flags like (N) for null glob
 
+To have a list of all those glob qualifiers, use the tab as:  ls ./(TAB
 
 $fg[yellow]
 More about Zsh
