@@ -151,7 +151,14 @@ if [[ -L /usr/lib/ccache/cc ]] ; then
     PATH="/usr/lib/ccache:${PATH}"
 fi
 
-
+# Prepend special needed path's:
+# ccache bins
+path=(/usr/lib/ccache(N) $path)
+# ruby gems
+path=($HOME/.gem/ruby/*/bin(N) $path)
+# user bin dirs
+path=($HOME/.local/bin(N) $path)
+path=($HOME/bin(N) $path)
 
 
 #
