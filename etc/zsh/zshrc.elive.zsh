@@ -354,6 +354,7 @@ Zsh by default allows you to have a good amount of features, for example:
   - ls *(^m0)          # Files not modified today.
   - emacs **/main.py   # Edit main.py, wherever it is in this directory tree.
   - ls **/*(.x)        # List all executable files in this tree
+  - cp Music/**/*(.) /media/usb-player/  # copy all files in a single-directory
   - ls *~*.*(.)        # List all files that does not have a dot in filename
   - ls -l */**(Lk+100) # List all files larger than 100kb in this tree
   - ls DATA_[0-9](#c4,7).csv # List DATA_nnnn.csv to DATA_nnnnnnn.csv
