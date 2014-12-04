@@ -257,6 +257,8 @@ bindkey '\ep' '_directories_switcher_up'
 # do not warn us about that a file already exist when using echo foo > bar
 setopt clobber
 
+# allow to use "#" in your terminal for comments
+setopt INTERACTIVE_COMMENTS
 
 
 #
