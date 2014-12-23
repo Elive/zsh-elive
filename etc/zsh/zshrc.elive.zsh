@@ -161,6 +161,13 @@ path=($HOME/.local/bin(N) $path)
 path=($HOME/bin(N) $path)
 
 
+# 
+# Variables
+#
+# Sometimes when you compile, ldconfig can give you an error because /usr/sh points to dash, so let's force this a bit to use a more standard shell
+export CONFIG_SHELL="/bin/bash"
+
+
 #
 # CONFIGURATIONS
 #
