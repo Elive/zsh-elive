@@ -429,6 +429,8 @@ The ZSH setup by Elive includes lots of features, for example:
   - with "Ctrl + -" you have an "undo" feature in your shell, even if you
     removed something or your expansion become very big or your contents
     changed, OMG BONUS!
+  - For cut/paste you can do "ctrl + u" which cuts the entire line and "ctrl + y"
+    to paste it, this is useful for save a command for later or to prepend anything
   - with "alt + e" it opens your $EDITOR to edit your actual command
   - with "ctrl + o, s" you prepend the command with sudo, useful when you missed
   - with "alt + p" you go to the previous directory stack (last used dirs)
