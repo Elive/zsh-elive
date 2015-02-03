@@ -36,7 +36,7 @@ git_plugin_enable_when_needed() {
                 #echo -e "Git plugin for your shell activated, run the command 'zsh' to start a new updated shell"
                 # no need to tell to reload
                 if grep -qs "'git' \\\\" "$HOME/.zpreztorc" ; then
-                    source "$HOME/.zshrc"
+                    source "$HOME/.zshrc" 1>/dev/null
                 fi
             fi
         fi
