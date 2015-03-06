@@ -109,6 +109,17 @@ function rationalise-dot() {
 zle -N rationalise-dot
 bindkey . rationalise-dot
 
+function copy_line_to_clipboard() {
+    if [[ -x "/usr/bin/xclip" ]] ; then
+        xclip <<< "$BUFFER"
+    else
+        echo -e "E: install xclip package first"
+    fi
+}
+zle -N copy_line_to_clipboard
+bindkey '^Y' copy_line_to_clipboard
+
+
 
 #
 # OTHER FEATURES
@@ -435,6 +446,8 @@ The ZSH setup by Elive includes lots of features, for example:
   - with "ctrl + o, s" you prepend the command with sudo, useful when you missed
   - with "alt + p" you go to the previous directory stack (last used dirs)
     alternatively you can use the default cd -<TAB> for the full list
+  - with "ctrl + y" you can copy your working line, so you can middle-click to
+    paste the same command in other terminals
 
 
 EOF
@@ -460,7 +473,7 @@ already know about them!
   - Ctrl + Shift + PagDown:	Splits vertically
  Copy / Paste
  ------------
-  - Ctrl + Shift + c: Copy a selected text
+  - Ctrl + Shift + c: Copy a selected text (see in elive features about copy)
   - Ctrl + Shift + v: Paste a copied text
     - when you simply hilight something, becomes also copied in primary buffer
   - Alt + Enter: Paste a hilighted selection
