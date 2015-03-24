@@ -33,11 +33,8 @@ git_plugin_enable_when_needed() {
             # enable the plugin if is not yet enabled
             if ! grep -qs "'git' \\\\" "$HOME/.zpreztorc" ; then
                 sed -i "s|'syntax-highlighting.*$|'git' \\\\\n  'syntax-highlighting' \\\|g" "$HOME/.zpreztorc"
-                #echo -e "Git plugin for your shell activated, run the command 'zsh' to start a new updated shell"
-                # no need to tell to reload
-                if grep -qs "'git' \\\\" "$HOME/.zpreztorc" ; then
-                    source "$HOME/.zshrc" 1>/dev/null
-                fi
+                # trying to source the zshrc seems like to throw errors
+                echo -e "Git plugin for your shell activated, run the command 'zsh' to start a new updated shell"
             fi
         fi
 
