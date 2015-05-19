@@ -56,9 +56,9 @@ function git(){
     # run the real git command first
     command git "$@"
 
-    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep git | grep -qs "$1" ; then
+    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep git | grep -qs -- "$1" ; then
         echo -e "$fg[green] -- Aliases suggested --$reset_color" 1>&2
-        alias | grep git | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep "$1" 1>&2
+        alias | grep git | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
         echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
     fi
 }
