@@ -13,7 +13,7 @@ source /etc/zsh/zshrc.elive.zsh
 unset ZDOTDIR
 
 # get elive-tools features {{{
-if [[ -x /usr/lib/elive-tools/functions ]] ; then
+if [[ -r /usr/lib/elive-tools/functions ]] ; then
     source /usr/lib/elive-tools/functions
 
     # we really want to setup our shell environment
