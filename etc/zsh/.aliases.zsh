@@ -10,4 +10,13 @@ function eet_conf_unpack_all_files(){
 # this is useful for reload ZSH conf
 alias XX="source $HOME/.zshrc"
 
+# make VIM to work with Ctrl + S for save without freezing the terminal
+# No ttyctl, so we need to save and then restore terminal settings
+vim() {
+    # osx users, use stty -g
+    local STTYOPTS="$(stty --save)"
+    stty stop '' -ixoff
+    command vim "$@"
+    stty "$STTYOPTS"
+}
 
