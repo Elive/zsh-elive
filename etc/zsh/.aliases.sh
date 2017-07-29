@@ -18,6 +18,9 @@ alias dpL="dpkg -L"
 # other apt* related stuff
 alias apfs="apt-file search"
 
+# hacks and improvements
+alias less="less -gR"
+
 # make VIM to work with Ctrl + S for save without freezing the terminal
 # No ttyctl, so we need to save and then restore terminal settings
 vim()
