@@ -21,6 +21,12 @@ alias apfs="apt-file search"
 # hacks and improvements
 alias less="less -gR"
 
+# startx wont run correctly if you "su" to another user because teh Xauthority is inherited, but we want to keep it otherwise by login to other user we cannot launch X applications in our destkop too
+startx(){
+    unset XAUTHORITY
+    command startx "$@"
+}
+
 # make VIM to work with Ctrl + S for save without freezing the terminal
 # No ttyctl, so we need to save and then restore terminal settings
 vim()
