@@ -168,6 +168,7 @@ path=(/usr/lib/ccache(N) $path)
 # ruby gems
 path=($HOME/.gem/ruby/*/bin(N) $path)
 # user bin dirs
+path=($HOME/packages/bin(N) $path)
 path=($HOME/.local/bin(N) $path)
 path=($HOME/bin(N) $path)
 
@@ -178,6 +179,15 @@ path=($HOME/bin(N) $path)
 # Sometimes when you compile, ldconfig can give you an error because /usr/sh points to dash, so let's force this a bit to use a more standard shell
 export CONFIG_SHELL="/bin/bash"
 
+#
+# Elive debug verbosity:
+# - 0 : only show errors
+# - 1 : + warnings
+# - 2 : + info messages (user always should want to see information messages, so this should be the default one)
+# - 3 : + debug
+# - 4 : + very debug
+# - 5 : + very very debug
+export EL_DEBUG=2
 
 #
 # CONFIGURATIONS
