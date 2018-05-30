@@ -165,12 +165,19 @@ fi
 # Prepend special needed path's:
 # ccache bins
 path=(/usr/lib/ccache(N) $path)
+
+# ruby gems
+path=($HOME/.gem/ruby/*/bin(N) $path)
 # ruby own version
 if [[ -x "${HOME}/.rvm/scripts/rvm" ]] ; then
     source "${HOME}/.rvm/scripts/rvm"
+    #path=($HOME/.rvm/bin(N) $path) # not needed since its sourced
+    rubyversion="$( TERM="" rvm list | grep "^=\* ruby" | awk '{print $2}' | tail -1T )"
+    if [[ -d "$HOME/.rvm/gems/${rubyversion}/bin" ]] ; then
+        path=($HOME/.rvm/gems/${rubyversion}/bin(N) $path)
+    fi
 fi
-# ruby gems
-path=($HOME/.gem/ruby/*/bin(N) $path)
+
 # user bin dirs
 path=($HOME/packages/bin(N) $path)
 path=($HOME/.local/bin(N) $path)
