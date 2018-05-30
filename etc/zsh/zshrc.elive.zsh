@@ -172,7 +172,7 @@ path=($HOME/.gem/ruby/*/bin(N) $path)
 if [[ -x "${HOME}/.rvm/scripts/rvm" ]] ; then
     source "${HOME}/.rvm/scripts/rvm"
     #path=($HOME/.rvm/bin(N) $path) # not needed since its sourced
-    rubyversion="$( TERM="" rvm list | grep "^=\* ruby" | awk '{print $2}' | tail -1T )"
+    rubyversion="$( TERM="" rvm list | grep "^=\* ruby" | awk '{print $2}' | tail -1 )"
     if [[ -d "$HOME/.rvm/gems/${rubyversion}/bin" ]] ; then
         path=($HOME/.rvm/gems/${rubyversion}/bin(N) $path)
     fi
