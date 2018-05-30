@@ -165,6 +165,10 @@ fi
 # Prepend special needed path's:
 # ccache bins
 path=(/usr/lib/ccache(N) $path)
+# ruby own version
+if [[ -x "${HOME}/.rvm/scripts/rvm" ]] ; then
+    source "${HOME}/.rvm/scripts/rvm"
+fi
 # ruby gems
 path=($HOME/.gem/ruby/*/bin(N) $path)
 # user bin dirs
