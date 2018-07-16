@@ -4,21 +4,14 @@ alias apse="apt-cache search"
 alias apsh="apt-cache show"
 alias appo="apt-cache policy"
 alias apu="sudo apt-get update"
-#alias apug="sudo apt-get update ; sudo apt-get -o \"Dpkg::Options::=--force-confdef\" -o \"Dpkg::Options::=--force-confnew\" dist-upgrade"
-if grep -qs "^first-user: ${USER}$" /etc/elive-version ; then
-    alias api="apt-get install"
-    alias apui="apt-get update ; sync ; apt-get install"
-    alias apif="apt-get -f install"
-    alias apr="apt-get remove"
-    alias dpi="dpkg -i"
-else
-    alias api="sudo apt-get install"
-    alias apui="sudo apt-get update ; sync ; apt-get install"
-    alias apif="sudo apt-get -f install"
-    alias apr="sudo apt-get remove"
-    alias dpi="sudo dpkg -i"
-fi
+alias apug="sudo apt-get update ; sudo apt-get -o \"Dpkg::Options::=--force-confdef\" -o \"Dpkg::Options::=--force-confnew\" dist-upgrade"
+alias api="sudo apt-get install"
+alias apui="sudo apt-get update ; sync ; sudo apt-get install"
+alias apif="sudo apt-get -f install"
+alias apr="sudo apt-get remove"
 
+# same for dpkg
+alias dpi="sudo dpkg -i"
 alias dpl="dpkg -l"
 alias dpL="dpkg -L"
 
@@ -43,16 +36,4 @@ vim()
     stty stop '' -ixoff
     command vim "$@"
     stty "$STTYOPTS"
-}
-
-apug(){
-    if grep -qs "^first-user: ${USER}$" /etc/elive-version ; then
-        if apt-get update ; then
-            apt-get -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confnew" dist-upgrade
-        fi
-    else
-        if sudo apt-get update ; then
-            sudo apt-get -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confnew" dist-upgrade
-        fi
-    fi
 }
