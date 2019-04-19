@@ -1,6 +1,6 @@
 # apt* related stuff
 function apir(){
-    sudo -- sh -c "apt-get update ; rm -f /var/cache/apt/archives/${1}_*.deb ; apt-get install --reinstall -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confnew\" $@"
+    sudo -- sh -c "apt-get update ; apt-get clean  ; apt-get install --reinstall -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confnew\" $@"
 }
 
 function eet_conf_unpack_all_files(){
