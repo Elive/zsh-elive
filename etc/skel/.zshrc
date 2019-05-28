@@ -27,16 +27,18 @@ fi
 git_plugin_enable_when_needed() {
     local r
     if [[ -d ".git" ]] ; then
-        echo -e "Do you want GIT plugin for your shell? This plugin makes your shell to be SLOW, only activate it if you are a very git-active user, you can also use only the aliases, you can deactivate it later by removing the entry from the ~/.zpreztorc file."
+        #echo -e "Do you want GIT plugin for your shell? This plugin makes your shell to be SLOW, only activate it if you are a very git-active user, you can also use only the aliases, you can deactivate it later by removing the entry from the ~/.zpreztorc file."
 
-        if el_confirm "\nActivate git plugin ?" ; then
+        #if el_confirm "\nActivate git plugin ?" ; then
             # enable the plugin if is not yet enabled
             if ! grep -qs "'git' \\\\" "$HOME/.zpreztorc" ; then
                 sed -i "s|'syntax-highlighting.*$|'git' \\\\\n  'syntax-highlighting' \\\|g" "$HOME/.zpreztorc"
                 # trying to source the zshrc seems like to throw errors
-                echo -e "Git plugin for your shell activated, run the command 'zsh' to start a new updated shell"
+                #echo -e "Git plugin for your shell activated, run the command 'zsh' to start a new updated shell"
+                echo -e "Activated GIT plugin for your shell. You can disable it from ~/.zpreztorc"
+                source "$HOME/.zshrc"
             fi
-        fi
+        #fi
 
         # disable this function checker
         sed -i 's|^precmd_functions+=(git_plugin_enable_when_needed)|#precmd_functions+=(git_plugin_enable_when_needed)|g' "$HOME/.zshrc"
