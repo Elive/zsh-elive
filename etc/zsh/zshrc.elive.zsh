@@ -509,7 +509,7 @@ already know about them!
 EOF
 fi
 
-if [[ "$TERM" = "screen-256color" ]] ; then
+if [[ "$TERM" = "screen-256color" ]] || [[ "$TERM" = "tmux-256color" ]] ; then
     cat << EOF
 $fg[yellow]
 SSH / TMUX
@@ -564,7 +564,7 @@ $fg[green]
 EOF
 
 # show how to scroll up
-if [[ "$TERM" = "screen-256color" ]] ; then
+if [[ "$TERM" = "screen-256color" ]] || [[ "$TERM" = "tmux-256color" ]] ; then
     cat << EOF
 $fg[cyan]
 Press 'Ctrl + a' and then PagUp for scroll up (tmux)
