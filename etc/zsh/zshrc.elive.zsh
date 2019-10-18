@@ -157,11 +157,6 @@ if zle -N edit-command-line ; then
 fi
 
 
-# add ccache by default to our PATH if we have it installed
-if [[ -L /usr/lib/ccache/cc ]] ; then
-    PATH="/usr/lib/ccache:${PATH}"
-fi
-
 # Prepend special needed path's:
 # ccache bins
 path=(/usr/lib/ccache(N) $path)
@@ -185,6 +180,8 @@ path=($HOME/packages/bin(N) $path)
 path=($HOME/.local/bin(N) $path)
 path=($HOME/bin(N) $path)
 
+# support snaps
+path=(/snap/bin(N) $path)
 
 # 
 # Variables
