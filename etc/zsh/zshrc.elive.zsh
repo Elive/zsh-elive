@@ -184,7 +184,8 @@ path=($HOME/bin(N) $path)
 path=(/snap/bin(N) $path)
 
 # add or remove games entry if we are in the group
-if id -Gn | grep -qsw "games" ; then
+#if id -Gn | grep -qsw "games" ; then
+if (( ${(kM)#usergroups:#games} )) ; then
     path=(/usr/games(N) $path)
 else
     path[(R)/usr/games]=()
