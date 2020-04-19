@@ -188,7 +188,7 @@ path=(/snap/bin(N) $path)
 if (( ${(kM)#usergroups:#games} )) ; then
     path=(/usr/games(N) $path)
 else
-    path[(R)/usr/games]=()
+    path[(R)/usr/games]=() 2>/dev/null
 fi
 
 #
