@@ -183,7 +183,14 @@ path=($HOME/bin(N) $path)
 # support snaps
 path=(/snap/bin(N) $path)
 
-# 
+# add or remove games entry if we are in the group
+if id -Gn | grep -qsw "games" ; then
+    path=(/usr/games(N) $path)
+else
+    path[(R)/usr/games]=()
+fi
+
+#
 # Variables
 #
 # Sometimes when you compile, ldconfig can give you an error because /usr/sh points to dash, so let's force this a bit to use a more standard shell
