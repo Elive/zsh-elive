@@ -161,6 +161,21 @@ fi
 # ccache bins
 path=(/usr/lib/ccache(N) $path)
 
+
+# add or remove games entry if we are in the group
+#if id -Gn | grep -qsw "games" ; then
+if (( ${(kM)#usergroups:#games} )) ; then
+    path=(/usr/games(N) $path)
+else
+    path[(R)/usr/games]=() 2>/dev/null
+fi
+
+
+# support snaps
+path=(/snap/bin(N) $path)
+# personal nix packages
+path=($HOME/.nix-profile/bin(N) $path)
+
 # ruby gems
 path=($HOME/.gem/ruby/*/bin(N) $path)
 # ruby own version
@@ -174,22 +189,10 @@ if [[ -x "${HOME}/.rvm/scripts/rvm" ]] ; then
     #fi
     #unset rubyversion
 fi
-
 # user bin dirs
 path=($HOME/packages/bin(N) $path)
 path=($HOME/.local/bin(N) $path)
 path=($HOME/bin(N) $path)
-
-# support snaps
-path=(/snap/bin(N) $path)
-
-# add or remove games entry if we are in the group
-#if id -Gn | grep -qsw "games" ; then
-if (( ${(kM)#usergroups:#games} )) ; then
-    path=(/usr/games(N) $path)
-else
-    path[(R)/usr/games]=() 2>/dev/null
-fi
 
 #
 # Variables
