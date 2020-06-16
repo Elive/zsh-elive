@@ -461,10 +461,10 @@ The ZSH setup by Elive includes lots of features, for example:
     you more time!)
     - example "alias | grep git" to know which aliases you have available for
       common git commands
-  - if you work in a common dir called git, type "cd d,git<TAB>" and you will
+  - if you work in a common dir named git, type "cd d,git<TAB>" and you will
+    be expanded to it (or them)
   - pressing "ctrl + e" and then a dot, will insert the last typed word again
     (useful for similar words/dirs in your commands)
-    be expanded to it
   - press "alt + h" to get the help of the first command (zsh builtins too)
   - typing 'esc' and '/' will autocomplete to previous recent files or commands!
   - with "Ctrl + w" you remove the last word, this feature is extremely useful
