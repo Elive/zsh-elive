@@ -167,7 +167,7 @@ path=(/usr/lib/ccache(N) $path)
 if (( ${(kM)#usergroups:#games} )) ; then
     path=(/usr/games(N) $path)
 else
-    path[(R)/usr/games]=() 2>/dev/null
+    path=( ${path:#/usr/games} )
 fi
 
 
