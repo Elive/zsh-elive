@@ -178,6 +178,7 @@ path=($HOME/.nix-profile/bin(N) $path)
 
 # ruby gems
 path=($HOME/.gem/ruby/*/bin(N) $path)
+path=($HOME/.local/share/gem/ruby/*/bin(N) $path)
 # ruby own version
 if [[ -x "${HOME}/.rvm/scripts/rvm" ]] ; then
     source "${HOME}/.rvm/scripts/rvm"
