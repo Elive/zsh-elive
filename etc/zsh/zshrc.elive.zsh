@@ -69,14 +69,14 @@ if [[ -s "/etc/zsh/.aliases.sh" ]] ; then
 fi
 #    zsh ones
 if [[ -s "/etc/zsh/.aliases.zsh" ]] ; then
-    source "~/.aliases.zsh"
+    source "/etc/zsh/.aliases.zsh"
 fi
 # local ones
 if [[ -s "~/.bash_aliases" ]] ; then
-    source "/etc/zsh/.bash_aliases"
+    source "~/.bash_aliases"
 fi
 if [[ -s "~/.aliases.sh" ]] ; then
-    source "/etc/zsh/.aliases.sh"
+    source "~/.aliases.sh"
 fi
 if [[ -s "~/.aliases.zsh" ]] ; then
     source "~/.aliases.zsh"
