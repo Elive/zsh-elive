@@ -74,6 +74,7 @@ function git(){
 
 # Extra git Alias example, write your own:
 #gfr='is_alias=1 git pull --rebase'
+# put them in your ~/.aliases.sh (generic) or ~/.aliases.zsh file
 
 # }}}
 
