@@ -100,7 +100,9 @@ fi
 ################# End Elive default confs ###################
 
 # Local own configurations must be added on this file so that elive-skel will not overwrite them:
-source "$HOME/.zshrc.local"
+if [[ -s "$HOME/.zshrc.local" ]] ; then
+    source "$HOME/.zshrc.local"
+fi
 
 
 
