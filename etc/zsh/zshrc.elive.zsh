@@ -183,8 +183,11 @@ fi
 
 # support snaps
 path=(/snap/bin(N) $path)
-# personal nix packages
+# local npm
+path=($HOME/node_modules/.bin(N) $path)
+# local nix packages
 path=($HOME/.nix-profile/bin(N) $path)
+
 
 # ruby gems
 path=($HOME/.gem/ruby/*/bin(N) $path)
