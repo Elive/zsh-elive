@@ -56,7 +56,7 @@ git_plugin_enable_when_needed() {
 
 # very useful realtime helper for git {{{
 # TO DISABLE: comment or remove entirely this function
-# But note that being annoying is a good thing, it forces you to use 
+# But note that being annoying is a good thing, it forces you to use
 # the alternatives, which is shorter to type, read and use them when appear
 function git(){
     local ret
@@ -65,7 +65,7 @@ function git(){
     ret=$?
 
     if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep git | grep -qs -- "$1" ; then
-        echo -e "$fg[green] -- Aliases suggested --$reset_color" 1>&2
+        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
         alias | grep git | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
         echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
     fi
@@ -80,6 +80,65 @@ function git(){
 
 
 # - zprezto git plugin }}}
+
+# suggester for apt {{{
+# TO DISABLE: comment or remove entirely this function
+# But note that being annoying is a good thing, it forces you to use
+# the alternatives, which is shorter to type, read and use them when appear
+function apt(){
+    local ret
+    # run the real apt-get command first
+    command apt "$@"
+    ret=$?
+
+    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | grep -qs -- "$1" ; then
+        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
+        alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
+        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+    fi
+    return $ret
+}
+function apt-get(){
+    local ret
+    # run the real apt-get command first
+    command apt-get "$@"
+    ret=$?
+
+    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | grep -qs -- "$1" ; then
+        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
+        alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
+        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+    fi
+    return $ret
+}
+function apt-cache(){
+    local ret
+    # run the real apt-get command first
+    command apt-cache "$@"
+    ret=$?
+
+    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep apt-cache | grep -qs -- "$1" ; then
+        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
+        alias | grep apt-cache | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
+        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+    fi
+    return $ret
+}
+function apt-file(){
+    local ret
+    # run the real apt-get command first
+    command apt-file "$@"
+    ret=$?
+
+    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep apt-file | grep -qs -- "$1" ; then
+        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
+        alias | grep apt-file | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
+        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+    fi
+    return $ret
+}
+
+# }}}
 
 # list of functions to run at each returned shell
 typeset -a precmd_functions
