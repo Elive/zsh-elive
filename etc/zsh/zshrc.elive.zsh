@@ -208,9 +208,28 @@ path=($HOME/packages/bin(N) $path)
 path=($HOME/.local/bin(N) $path)
 path=($HOME/bin(N) $path)
 
+
+
 #
 # Variables
 #
+
+# GPG available for git and signing (like for github):
+export GPG_TTY=$(tty)
+
+# set chatgpt api key by default
+if [[ -z "$OPENAI_API_KEY" ]] && [[ -s "$HOME/.config/elive/elive-tools/el_config/%%usr%%bin%%elive-assistant_conf.sh" ]] ; then
+    source "$HOME/.config/elive/elive-tools/el_config/%%usr%%bin%%elive-assistant_conf.sh"
+    if [[ -n "$conf_chatgpt_apikey" ]] ; then
+        export OPENAI_API_KEY="$conf_chatgpt_apikey"
+    fi
+fi
+
+
+
+
+
+
 # Sometimes when you compile, ldconfig can give you an error because /usr/sh points to dash, so let's force this a bit to use a more standard shell
 export CONFIG_SHELL="/bin/bash"
 
