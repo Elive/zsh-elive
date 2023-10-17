@@ -251,6 +251,11 @@ export EL_DEBUG=2
 # header:30:case> some code
 PS4="${PR_GREY}%N${PR_NO_COLOR}:${PR_GREY}%i${PR_NO_COLOR}:${PR_GREY}%_>${PR_NO_COLOR} "
 
+# TODO: this function will show a raid (mdraid, software) status:
+# raid_prompt() { awk '/^md/ {printf "%s: ", $1}; /blocks/ {print $NF}'  /proc/mdstat | awk '/\[U+\]/ {print "\033[32m" $0 "\033[0m"}; /\[.*_.*\]/ {print "\033[31m" $0 "\033[0m"}'; }
+# then something like:  PS1='$(raid_prompt)\n[\u@\h \W]\$ '
+
+
 # notify me of bg jobs exiting immediately - not at next prompt
 setopt NOTIFY
 
