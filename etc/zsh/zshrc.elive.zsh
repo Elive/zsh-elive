@@ -185,6 +185,7 @@ fi
 path=(/snap/bin(N) $path)
 # support flatpaks
 path=(/var/lib/flatpak/exports/bin(N) $path)
+path=($HOME/.local/share/flatpak/exports/bin(N) $path)
 # local npm
 path=($HOME/node_modules/.bin(N) $path)
 # local nix packages
