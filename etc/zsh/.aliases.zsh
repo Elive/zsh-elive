@@ -1,6 +1,6 @@
 # apt* related stuff
 function apir(){
-    sudo -- sh -c "apt update ; apt clean  ; apt install --reinstall -o \"Dpkg::Options::=--force-confdef\" -o \"Dpkg::Options::=--force-confnew\" $@"
+    sudo -E -- sh -c "apt update ; apt clean  ; apt install --reinstall -o \"Dpkg::Options::=--force-confdef\" -o \"Dpkg::Options::=--force-confnew\" $@"
 }
 
 function eet_conf_unpack_all_files(){
