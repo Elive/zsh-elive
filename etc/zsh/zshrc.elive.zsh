@@ -151,7 +151,7 @@ fi
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER != sudo\ * ]]; then
-        BUFFER="sudo -E $BUFFER"
+        BUFFER="sudo $BUFFER"
         CURSOR=$(( CURSOR+5 ))
     fi
 }
