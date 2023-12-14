@@ -186,10 +186,27 @@ path=(/snap/bin(N) $path)
 # support flatpaks
 path=(/var/lib/flatpak/exports/bin(N) $path)
 path=($HOME/.local/share/flatpak/exports/bin(N) $path)
-# local npm
-path=($HOME/node_modules/.bin(N) $path)
 # local nix packages
 path=($HOME/.nix-profile/bin(N) $path)
+
+
+# NPM support
+# local generic npm
+path=($HOME/node_modules/.bin(N) $path)
+
+# locally-installed npm packages:
+# NPM packages in homedir
+NPM_PACKAGES="$HOME/.npm-packages"
+
+# Tell our environment about user-installed node tools
+# PATH="$NPM_PACKAGES/bin:$PATH"
+path=($HOME/.npm-packages/bin(N) $path)
+# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
+unset MANPATH  # delete if you already modified MANPATH elsewhere in your configuration
+MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# Tell Node about these packages
+NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 
 # ruby gems
