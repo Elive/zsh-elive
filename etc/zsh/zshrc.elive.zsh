@@ -188,6 +188,11 @@ path=(/var/lib/flatpak/exports/bin(N) $path)
 path=($HOME/.local/share/flatpak/exports/bin(N) $path)
 # local nix packages
 path=($HOME/.nix-profile/bin(N) $path)
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
 
 
 # NPM support
