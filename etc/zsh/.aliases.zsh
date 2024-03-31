@@ -8,7 +8,8 @@ function eet_conf_unpack_all_files(){
 }
 
 # this is useful for reload ZSH conf
-alias XX="source $HOME/.zshrc"
+# alias XX="source $HOME/.zshrc"
+alias XX="exec zsh"
 
 # make VIM to work with Ctrl + S for save without freezing the terminal
 # No ttyctl, so we need to save and then restore terminal settings

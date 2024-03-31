@@ -36,11 +36,12 @@ git_plugin_enable_when_needed() {
                 # trying to source the zshrc seems like to throw errors
                 #echo -e "Git plugin for your shell activated, run the command 'zsh' to start a new updated shell"
                 echo -e "Activated GIT plugin for your shell. You can disable it from ~/.zpreztorc"
-                if [[ -n "$el_c_blink" ]] ; then
-                    echo -e "You must ${el_c_blink}re-login${el_c_n} in your shell to use it."
-                else
-                    echo -e "You must re-login in your shell to use it."
-                fi
+                # if [[ -n "$el_c_blink" ]] ; then
+                #     echo -e "You must ${el_c_blink}re-login${el_c_n} in your shell to use it."
+                # else
+                #     echo -e "You must re-login in your shell to use it."
+                # fi
+                exec zsh
             fi
         #fi
 
