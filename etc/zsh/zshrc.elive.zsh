@@ -195,6 +195,10 @@ fi
 # End Nix
 
 
+# elive dev paths
+path=(/opt/elive-dev_*/bin(N) $path)
+
+
 # NPM support
 # local generic npm
 path=($HOME/node_modules/.bin(N) $path)
