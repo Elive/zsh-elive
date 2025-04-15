@@ -13,3 +13,7 @@ if [ -d /etc/zsh/zprofile.d ]; then
   unset i
 fi
 
+# Set some environment variables, like if the user has set OPENAI_API_KEY on it
+if [ -s ~/.profile ] ; then
+  eval "$( grep -a --color=never "^export " ~/.profile )"
+fi
