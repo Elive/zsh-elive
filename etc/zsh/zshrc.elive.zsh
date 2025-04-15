@@ -249,12 +249,13 @@ path=($HOME/bin(N) $path)
 export GPG_TTY=$(tty)
 
 # set chatgpt api key by default
-if [[ -z "$OPENAI_API_KEY" ]] && [[ -s "$HOME/.config/elive/elive-tools/el_config/%%usr%%bin%%elive-assistant_conf.sh" ]] ; then
-    source "$HOME/.config/elive/elive-tools/el_config/%%usr%%bin%%elive-assistant_conf.sh"
-    if [[ -n "$conf_chatgpt_apikey" ]] ; then
-        export OPENAI_API_KEY="$conf_chatgpt_apikey"
-    fi
-fi
+# update: they should be set in .profile
+# if [[ -z "$OPENAI_API_KEY" ]] && [[ -s "$HOME/.config/elive/elive-tools/el_config/%%usr%%bin%%elive-assistant_conf.sh" ]] ; then
+#     source "$HOME/.config/elive/elive-tools/el_config/%%usr%%bin%%elive-assistant_conf.sh"
+#     if [[ -n "$conf_chatgpt_apikey" ]] ; then
+#         export OPENAI_API_KEY="$conf_chatgpt_apikey"
+#     fi
+# fi
 
 
 
