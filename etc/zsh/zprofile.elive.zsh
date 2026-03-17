@@ -18,3 +18,13 @@ if [ -s ~/.profile ] ; then
   eval "$( grep --color=never -a -P '^(?!.*(PATH|SHELL|SH)=)[[:space:]]*((export[[:space:]]+)?[[:alnum:]_]+=(".*"|'"'"'.*'"'"'|.*[^[:space:]]))' ~/.profile )"
 
 fi
+
+# Homebrew initialization
+if [ -x ~/homebrew/bin/brew ]; then
+    eval "$( ~/homebrew/bin/brew shellenv)"
+fi
+
+# Load environment variables from .env
+if [ -f ~/.env ]; then
+    export $(grep -v '^#' ~/.env | xargs)
+fi
