@@ -18,7 +18,7 @@ if [[ -z "$is_zsh_configured" ]]; then
         if [[ -r /usr/lib/elive-tools/functions ]]; then
             source /usr/lib/elive-tools/functions
 
-            echo -e "${el_c_cyan}Welcome to Elive first Zsh configuration${el_c_n}"
+            echo -e "${el_c_c}Welcome to Elive first Zsh configuration${el_c_n}\n"
 
             if el_confirm "Do you want to show alias suggestions (shows shorter commands when you type full ones)?" ; then
                 is_aliases_show_wanted=1
@@ -44,7 +44,7 @@ if [[ -z "$is_zsh_configured" ]]; then
 
             # Mark as configured and save variables
             sed -i "1i is_zsh_configured=1\nis_aliases_show_wanted=$is_aliases_show_wanted\nis_help_header_wanted=$is_help_header_wanted" "$HOME/.zshrc"
-            echo -e "\n${el_c_green}Configuration saved.${el_c_n} If you want to reconfigure, remove the line 'is_zsh_configured=1' from your ~/.zshrc"
+            echo -e "\n${el_c_g}Configuration saved.${el_c_n} If you want to reconfigure, remove the line 'is_zsh_configured=1' from your ~/.zshrc"
         fi
     fi
 fi
