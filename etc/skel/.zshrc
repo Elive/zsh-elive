@@ -12,6 +12,44 @@ ZDOTDIR="/etc/zsh"
 source /etc/zsh/zshrc.elive.zsh
 unset ZDOTDIR
 
+# Configuration Wizard {{{
+if [[ -z "$is_zsh_configured" ]]; then
+    if ! grep -qs "boot=live" /proc/cmdline; then
+        if [[ -r /usr/lib/elive-tools/functions ]]; then
+            source /usr/lib/elive-tools/functions
+
+            echo -e "${el_c_cyan}Welcome to Elive first Zsh configuration${el_c_n}"
+
+            if el_confirm "Do you want to show alias suggestions (shows shorter commands when you type full ones)?" ; then
+                is_aliases_show_wanted=1
+            else
+                is_aliases_show_wanted=0
+            fi
+
+            if el_confirm "Do you want to show help headers when opening new terminals?" ; then
+                is_help_header_wanted=1
+            else
+                is_help_header_wanted=0
+            fi
+
+            if el_confirm "Do you want to show the welcome message in tmux sessions?" ; then
+                if [[ -f "$HOME/.tmux.conf" ]]; then
+                    sed -i 's|^# if-shell "true" '\''set-hook -g session-created ${message_welcome}'\''|if-shell "true" '\''set-hook -g session-created ${message_welcome}'\''|g' "$HOME/.tmux.conf"
+                fi
+            else
+                if [[ -f "$HOME/.tmux.conf" ]]; then
+                    sed -i 's|^if-shell "true" '\''set-hook -g session-created ${message_welcome}'\''|# if-shell "true" '\''set-hook -g session-created ${message_welcome}'\''|g' "$HOME/.tmux.conf"
+                fi
+            fi
+
+            # Mark as configured and save variables
+            sed -i "1i is_zsh_configured=1\nis_aliases_show_wanted=$is_aliases_show_wanted\nis_help_header_wanted=$is_help_header_wanted" "$HOME/.zshrc"
+            echo -e "\n${el_c_green}Configuration saved.${el_c_n} If you want to reconfigure, remove the line 'is_zsh_configured=1' from your ~/.zshrc"
+        fi
+    fi
+fi
+# }}}
+
 # get elive-tools features {{{
 if [[ -r /usr/lib/elive-tools/functions ]] ; then
     source /usr/lib/elive-tools/functions
@@ -65,10 +103,12 @@ function git(){
     command git "$@"
     ret=$?
 
-    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep -vE "(aider)" | grep git | grep -qs -- "$1" ; then
-        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
-        alias | grep -vE "(aider)" | grep git | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
-        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+    if [[ "$is_aliases_show_wanted" != "0" ]]; then
+        if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep -vE "(aider)" | grep git | grep -qs -- "$1" ; then
+            echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
+            alias | grep -vE "(aider)" | grep git | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
+            echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+        fi
     fi
     return $ret
 }
@@ -92,10 +132,12 @@ function apt(){
     command apt "$@"
     ret=$?
 
-    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | grep -qs -- "$1" ; then
-        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
-        alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
-        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+    if [[ "$is_aliases_show_wanted" != "0" ]]; then
+        if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | grep -qs -- "$1" ; then
+            echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
+            alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
+            echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+        fi
     fi
     return $ret
 }
@@ -105,10 +147,12 @@ function apt-get(){
     command apt-get "$@"
     ret=$?
 
-    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | grep -qs -- "$1" ; then
-        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
-        alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
-        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+    if [[ "$is_aliases_show_wanted" != "0" ]]; then
+        if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | grep -qs -- "$1" ; then
+            echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
+            alias | grep -v "apt-file" | grep -E "(apt-get|apt)" | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
+            echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+        fi
     fi
     return $ret
 }
@@ -118,10 +162,12 @@ function apt-cache(){
     command apt-cache "$@"
     ret=$?
 
-    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep apt-cache | grep -qs -- "$1" ; then
-        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
-        alias | grep apt-cache | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
-        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+    if [[ "$is_aliases_show_wanted" != "0" ]]; then
+        if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep apt-cache | grep -qs -- "$1" ; then
+            echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
+            alias | grep apt-cache | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
+            echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+        fi
     fi
     return $ret
 }
@@ -131,10 +177,12 @@ function apt-file(){
     command apt-file "$@"
     ret=$?
 
-    if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep apt-file | grep -qs -- "$1" ; then
-        echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
-        alias | grep apt-file | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
-        echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+    if [[ "$is_aliases_show_wanted" != "0" ]]; then
+        if ! ((is_alias)) && [[ -n "$1" ]] && alias | grep apt-file | grep -qs -- "$1" ; then
+            echo -e "$fg[green] -- Suggested aliases --$reset_color" 1>&2
+            alias | grep apt-file | sed -e 's|is_alias=1 ||g' | GREP_COLOR="36" grep -- "$1" 1>&2
+            echo -e "$fg[green] -- You can disable this helper in your .zshrc --$reset_color" 1>&2
+        fi
     fi
     return $ret
 }
@@ -149,11 +197,13 @@ precmd_functions+=(git_plugin_enable_when_needed)
 
 
 # help
-echo "                     $fg[green]Type 'help' to know the ton of Elive features available...$reset_color"
+if [[ "$is_help_header_wanted" != "0" ]]; then
+    echo "                     $fg[green]Type 'help' to know the ton of Elive features available...$reset_color"
 
-# do we are in tmux?
-if [[ "$TERM" = "screen-256color" ]] || [[ "$TERM" = "tmux-256color" ]] ; then
-    echo "                     $fg[green]             See the special features when working in ssh!$reset_color"
+    # do we are in tmux?
+    if [[ "$TERM" = "screen-256color" ]] || [[ "$TERM" = "tmux-256color" ]] ; then
+        echo "                     $fg[green]             And see the special features when working in ssh!$reset_color"
+    fi
 fi
 
 #
