@@ -199,6 +199,9 @@ fi
 path=(/opt/elive-dev_*/bin(N) $path)
 
 
+# Go support
+path=($HOME/go/bin(N) $path)
+
 # NPM support
 # local generic npm
 path=($HOME/node_modules/.bin(N) $path)
