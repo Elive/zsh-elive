@@ -28,3 +28,13 @@ fi
 if [ -f ~/.env ]; then
     export $(grep -v '^#' ~/.env | xargs)
 fi
+
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
+# ruby own version
+if [[ -x "${HOME}/.rvm/scripts/rvm" ]] ; then
+    source "${HOME}/.rvm/scripts/rvm"
+fi

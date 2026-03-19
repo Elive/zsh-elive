@@ -167,116 +167,6 @@ if zle -N edit-command-line ; then
 fi
 
 
-# Prepend special needed path's:
-# ccache bins
-path=(/usr/lib/ccache(N) $path)
-
-
-# add or remove games entry if we are in the group
-#if id -Gn | grep -qsw "games" ; then
-if (( ${(kM)#usergroups:#games} )) ; then
-    path=(/usr/games(N) $path)
-else
-    path=( ${path:#/usr/games} )
-fi
-
-
-# support snaps
-path=(/snap/bin(N) $path)
-# support flatpaks
-path=(/var/lib/flatpak/exports/bin(N) $path)
-path=($HOME/.local/share/flatpak/exports/bin(N) $path)
-# local nix packages
-path=($HOME/.nix-profile/bin(N) $path)
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
-# End Nix
-
-
-# elive dev paths
-path=(/opt/elive-dev_*/bin(N) $path)
-
-
-# Go support
-path=($HOME/go/bin(N) $path)
-
-# NPM support
-# local generic npm
-path=($HOME/node_modules/.bin(N) $path)
-
-# locally-installed npm packages:
-# NPM packages in homedir
-NPM_PACKAGES="$HOME/.npm-packages"
-
-# Tell our environment about user-installed node tools
-# PATH="$NPM_PACKAGES/bin:$PATH"
-path=($HOME/.npm-packages/bin(N) $path)
-# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
-unset MANPATH  # delete if you already modified MANPATH elsewhere in your configuration
-if [[ -x /usr/bin/manpath ]] ; then
-    MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-fi
-
-# Tell Node about these packages
-NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-
-
-# ruby gems
-path=($HOME/.gem/ruby/*/bin(N) $path)
-path=($HOME/.local/share/gem/ruby/*/bin(N) $path)
-# ruby own version
-if [[ -x "${HOME}/.rvm/scripts/rvm" ]] ; then
-    source "${HOME}/.rvm/scripts/rvm"
-    # UPDATE: this all is unneded with our previous source
-    #path=($HOME/.rvm/bin(N) $path)
-    #rubyversion="$( TERM="" rvm list | grep "^=\* ruby" | awk '{print $2}' | tail -1 )"
-    #if [[ -d "$HOME/.rvm/gems/${rubyversion}/bin" ]] ; then
-        #path=($HOME/.rvm/gems/${rubyversion}/bin(N) $path)
-    #fi
-    #unset rubyversion
-fi
-# user bin dirs
-path=($HOME/packages/bin(N) $path)
-path=($HOME/.local/bin(N) $path)
-path=($HOME/bin(N) $path)
-
-
-
-#
-# Variables
-#
-
-# GPG available for git and signing (like for github):
-export GPG_TTY=$(tty)
-
-# set chatgpt api key by default
-# update: they should be set in .profile
-# if [[ -z "$OPENAI_API_KEY" ]] && [[ -s "$HOME/.config/elive/elive-tools/el_config/%%usr%%bin%%elive-assistant_conf.sh" ]] ; then
-#     source "$HOME/.config/elive/elive-tools/el_config/%%usr%%bin%%elive-assistant_conf.sh"
-#     if [[ -n "$conf_chatgpt_apikey" ]] ; then
-#         export OPENAI_API_KEY="$conf_chatgpt_apikey"
-#     fi
-# fi
-
-
-
-
-
-
-# Sometimes when you compile, ldconfig can give you an error because /usr/sh points to dash, so let's force this a bit to use a more standard shell
-export CONFIG_SHELL="/bin/bash"
-
-#
-# Elive debug verbosity:
-# - 0 : only show errors
-# - 1 : + warnings
-# - 2 : + info messages (user always should want to see information messages, so this should be the default one)
-# - 3 : + debug
-# - 4 : + very debug
-# - 5 : + very very debug
-export EL_DEBUG=2
 
 #
 # CONFIGURATIONS
@@ -386,9 +276,6 @@ setopt INTERACTIVE_COMMENTS
 #
 # END
 #
-
-# automatically remove duplicates from these arrays
-typeset -U path cdpath fpath manpath PATH
 
 
 
