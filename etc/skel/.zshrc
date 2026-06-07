@@ -14,7 +14,8 @@ unset ZDOTDIR
 
 # Configuration Wizard {{{
 if [[ -z "$is_zsh_configured" ]]; then
-    if ! grep -qs "boot=live" /proc/cmdline; then
+    # verify that we are not in a chroot, if we are in a chroot, do not run these questions
+    if ! grep -qs "boot=live" /proc/cmdline && ! ischroot; then
         if [[ -r /usr/lib/elive-tools/functions ]]; then
             source /usr/lib/elive-tools/functions
 
