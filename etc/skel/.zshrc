@@ -35,11 +35,13 @@ if [[ -z "$is_zsh_configured" ]]; then
 
             if el_confirm "Do you want to show the welcome message in tmux sessions?" ; then
                 if [[ -f "$HOME/.tmux.conf" ]]; then
-                    sed -i 's|^# if-shell "true" '\''set-hook -g session-created ${message_welcome}'\''|if-shell "true" '\''set-hook -g session-created ${message_welcome}'\''|g' "$HOME/.tmux.conf"
+                    # Uncomment any lines containing message_welcome
+                    sed -i '/message_welcome/s/^#[[:space:]]*//' "$HOME/.tmux.conf"
                 fi
             else
                 if [[ -f "$HOME/.tmux.conf" ]]; then
-                    sed -i 's|^if-shell "true" '\''set-hook -g session-created ${message_welcome}'\''|# if-shell "true" '\''set-hook -g session-created ${message_welcome}'\''|g' "$HOME/.tmux.conf"
+                    # Comment out any lines containing message_welcome that aren't already commented
+                    sed -i '/message_welcome/{/^[[:space:]]*#/!s/^/# /}' "$HOME/.tmux.conf"
                 fi
             fi
 
